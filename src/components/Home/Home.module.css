@@ -1,0 +1,109 @@
+.homePage {
+  width: 1300px;
+  margin-left: 95px;
+  max-width: 1316px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.titleBar {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.titleBarLogo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.titleBarLogo img {
+  width: 33px;
+  height: 33px;
+}
+.titleBarLogo span {
+  cursor: pointer;
+}
+
+.titleName {
+  color: #2e0052;
+  font-size: 24.13px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+/* .navMenu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 50px;
+  color: #000000;
+  font-size: 16.41px;
+  font-weight: 400;
+} */
+
+.navMenu li {
+  display: flex;
+  padding-top: 15px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5px;
+  cursor: pointer;
+}
+
+.navLoginCart {
+  display: flex;
+  align-items: center;
+}
+
+.navLoginCart button {
+  width: 217px;
+  height: 52px;
+  display: flex;
+  outline: none;
+  border: 1px solid #7a7a7a;
+  border-radius: 47px;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  background: green;
+  cursor: pointer;
+}
+
+.navLoginCart img {
+  width: 300px;
+  height: 206px;
+
+  margin-left: 800px;
+}
+
+.navLoginCart button:active {
+  background: #f3f3f3;
+}
+.navCartCount {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+
+  border-radius: 11px;
+  font-size: 14px;
+}
+
+.gradientBox {
+  height: 207px;
+  display: flex;
+  object-fit: contain;
+  top: 179px;
+  border-radius: 29px;
+  background-image: linear-gradient(to right, #7286b4 0%, #e794ce 100%);
+}
+
+.gradientBox img {
+  width: 300px;
+  height: 206px;
+
+  margin-left: 800px;
+}

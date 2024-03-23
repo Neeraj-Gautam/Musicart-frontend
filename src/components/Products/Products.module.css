@@ -1,0 +1,45 @@
+/*
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  grid-template-rows: repeat(4, 1fr); 
+  gap: 10px;
+}
+
+.container li {
+  list-style-type: none;
+ 
+}
+
+.rowContainer {
+  display: flex;
+  color: black;
+  font-weight: bold;
+  flex-direction: column;
+  object-fit: contain;
+}
+
+.rowContainer img {
+    width: 273px;
+    height: 273px;
+}
+
+.colorAndType {
+  display: flex;
+  object-fit: contain;
+}
+*/
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns with equal width */
+  gap: 20px; /* Adjust as needed for spacing between grid items */
+}
+
+.rowContainer {
+  display: flex;
+  color: black;
+  font-weight: bold;
+  flex-direction: column;
+  object-fit: contain;
+}
