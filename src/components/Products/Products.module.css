@@ -43,3 +43,17 @@
   flex-direction: column;
   object-fit: contain;
 }
+
+.listItem {
+  display: flex;
+}
+
+.listItemInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  height: 50px;
+  width: 50px;
+}
