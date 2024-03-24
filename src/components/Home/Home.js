@@ -4,7 +4,6 @@ import styles from "./Home.module.css";
 import musiCartLogo from "../../assets/icon/musiCartLogo.png";
 import bannerImage from "../../assets/icon/bannerImage.png";
 import shoppingCart from "../../assets/icon/shoppingCart.png";
-import SearchBar from "../SearchBar/SearchBar";
 import Product from "../Products/Product";
 import { Footer } from "../Footer/Footer";
 
@@ -36,10 +35,6 @@ export const Home = () => {
         <div className={styles.gradientBox}>
           <p>Grab upto 50% off on Selected headphones</p>
           {<img src={bannerImage} />}
-        </div>
-
-        <div>
-          <SearchBar />
         </div>
 
         <div>

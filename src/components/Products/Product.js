@@ -2,21 +2,58 @@ import React, { useState, useEffect } from "react";
 import styles from "./Products.module.css";
 import { getProducts } from "../../apis/products";
 import image0 from "../../assets/products/image4.png";
-import { DropDownMenu } from "../DropDownMenu/DropDownMenu";
 import { colorOptions } from "../../utils/colorOptions";
+import { HeadphoneTypeOptions } from "../../utils/HeadphoneTypeOptions";
+import { companyOptions } from "../../utils/companyOptions";
+import { PriceOptions } from "../../utils/PriceOptions";
+import { SortOptions } from "../../utils/SortOptions";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Product = () => {
-  const [gridView, setGridView] = useState(false);
+  const [gridView, setGridView] = useState(true);
   const [dataArray, setDataArray] = useState([]);
+  const [color, setColor] = useState("");
+  const [company, setCompany] = useState("");
+  const [headPhoneType, setHeadPhoneType] = useState("");
+  const [price, setPrice] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [sortType, setSortType] = useState("");
+  const [searchParam, setSearchParam] = useState("");
 
   useEffect(() => {
-    console.log("Component has mounted");
     loadData();
-  }, []);
+  }, [color, company, headPhoneType, price, sortBy, sortType, searchParam]);
 
   const loadData = async () => {
-    const response = await getProducts({});
-    console.log(response);
+    let params = "";
+
+    if (headPhoneType) {
+      params += "headPhoneType=" + headPhoneType + "&";
+    }
+    if (color) {
+      params += "color=" + color + "&";
+    }
+    if (company) {
+      params += "company=" + company + "&";
+    }
+
+    if (price) {
+      params += "price=" + price + "&";
+    }
+
+    if (sortBy) {
+      params += "sortBy=" + sortBy + "&";
+    }
+
+    if (sortType) {
+      params += "sortType=" + sortType + "&";
+    }
+    if (searchParam) {
+      params += "searchParam=" + searchParam + "&";
+    }
+
+    console.log(params);
+    const response = await getProducts(params);
     setDataArray(response);
   };
 
@@ -28,25 +65,91 @@ const Product = () => {
     setGridView(false);
   };
 
-  const selectColor = async (color) => {
-    const param = "color=" + "black";
-    console.log(param);
-    const response = await getProducts(param);
-    console.log(response);
-    setDataArray(response);
+  const selectHeadphoneType = (event) => {
+    setHeadPhoneType(event.target.value);
+  };
+
+  const selectColor = (event) => {
+    setColor(event.target.value);
+  };
+
+  const selectCompany = (event) => {
+    setCompany(event.target.value);
+  };
+
+  const selectPrice = (event) => {
+    setPrice(event.target.value);
+  };
+
+  const handleSearch = (event) => {
+    console.log(event.target.value);
+    setSearchParam(event.target.value);
+  };
+
+  const handleSorting = (event) => {
+    const val = event.target.value;
+    const sortOption = JSON.parse(val);
+    setSortBy(sortOption.sortBy);
+    setSortType(sortOption.sortType);
   };
 
   return (
     <div>
+      <div>
+        <SearchBar onChange={handleSearch} />
+      </div>
       <div className={styles.controls}>
-        <button onClick={handleGridView}></button>
-        <button onClick={handleListView}></button>
-        <select name={colorOptions.label} onChange={selectColor}>
-          <option hidden>{colorOptions.hiddenOption}</option>
-          {colorOptions.options.map((element) => (
-            <option value={element.value}>{element.displayName}</option>
-          ))}
-        </select>
+        <div>
+          <button onClick={handleGridView}></button>
+          <button onClick={handleListView}></button>
+        </div>
+        <div className={styles.genre}>
+          <select name={headPhoneType.label} onChange={selectHeadphoneType}>
+            <option value="headPhoneType" hidden>
+              Headphone type
+            </option>
+            {HeadphoneTypeOptions.options.map((element) => (
+              <option value={element.value}>{element.displayName}</option>
+            ))}
+          </select>
+          <select name={companyOptions.label} onChange={selectCompany}>
+            <option value="company" hidden>
+              Company
+            </option>
+            {companyOptions.options.map((element) => (
+              <option value={element.value}>{element.displayName}</option>
+            ))}
+          </select>
+          <select name={colorOptions.label} onChange={selectColor}>
+            <option value="color" hidden>
+              Color
+            </option>
+            {colorOptions.options.map((element) => (
+              <option value={element.value}>{element.displayName}</option>
+            ))}
+          </select>
+          <select name={PriceOptions.label} onChange={selectPrice}>
+            <option value="price" hidden>
+              Price
+            </option>
+            {PriceOptions.options.map((element) => (
+              <option value={element.value}>{element.displayName}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className={styles.sortBy}>
+          <select name={SortOptions.label} onChange={handleSorting}>
+            <option value="sortType" hidden>
+              Sort by :Featured
+            </option>
+            {SortOptions.options.map((element) => (
+              <option value={JSON.stringify(element.value)}>
+                {element.displayName}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {gridView && (
