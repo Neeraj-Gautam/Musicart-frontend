@@ -1,49 +1,38 @@
 import React, { useState } from "react";
 import styles from "./SearchBar.module.css";
-import SearchBarIcon from "../../assets/icon/SearchBarIcon.png";
-const SearchBar = ({ placeholder, data }) => {
-  // const [filteredData, setFilteredData] = useState(data);
-  // const [wordEntered, setWordEntered] = useState("");
-
-  // const handleFilter = (event) => {
-  //   const searchWord = event.target.value;
-  //   setWordEntered(searchWord);
-  //   const newFilter = data.filter((value) => {
-  //     return value.title.toLowerCase().includes(searchWord.toLowerCase());
-  //   });
-
-  //   if (searchWord === "") {
-  //     setFilteredData(data);
-  //   } else {
-  //     setFilteredData(newFilter);
-  //   }
-  // };
-
-  {
-    /* <div class="search-container">
-  <input type="text" placeholder="Search...">
-  <i class="fas fa-search search-icon"></i>
-</div> */
-  }
+const SearchBar = ({ placeholder, onChange }) => {
+  const handleChange = (event) => {
+    const { value } = event.target;
+    onChange(value);
+  };
 
   return (
-    <div>
-      <div>
-        {/* <input
-          className={styles.searchContainer}
-          type="text"
-          placeholder="Search by Product Name"
-        /> */}
-
+    <div className={styles.searchContainer}>
+      {/* <div>
         <div className={styles.searchContainer}>
           <img src={SearchBarIcon}></img>
           <input
-            className={styles.searchInput}
             type="text"
-            placeholder="Search by Product Name"
+            placeholder={placeholder}
+            onChange={handleChange}
           />
         </div>
-      </div>
+      </div> */}
+      <svg
+        stroke="currentColor"
+        fill="none"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        height="1em"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" placeholder={placeholder} onChange={handleChange} />
     </div>
   );
 };

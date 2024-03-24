@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Products.module.css";
 import { getProducts } from "../../apis/products";
-import image0 from "../../assets/products/image4.png";
+import image0 from "../../assets/products/image7.png";
 import { colorOptions } from "../../utils/colorOptions";
 import { HeadphoneTypeOptions } from "../../utils/HeadphoneTypeOptions";
 import { companyOptions } from "../../utils/companyOptions";
 import { PriceOptions } from "../../utils/PriceOptions";
 import { SortOptions } from "../../utils/SortOptions";
 import SearchBar from "../SearchBar/SearchBar";
+import listViewRounded from "../../assets/icon/list-view-rounded.png";
+import gridViewRounded from "../../assets/icon/grid-view-rounded.png";
 
 const Product = () => {
   const [gridView, setGridView] = useState(true);
@@ -18,11 +20,11 @@ const Product = () => {
   const [price, setPrice] = useState("");
   const [sortBy, setSortBy] = useState("");
   const [sortType, setSortType] = useState("");
-  const [searchParam, setSearchParam] = useState("");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     loadData();
-  }, [color, company, headPhoneType, price, sortBy, sortType, searchParam]);
+  }, [color, company, headPhoneType, price, sortBy, sortType, search]);
 
   const loadData = async () => {
     let params = "";
@@ -48,8 +50,8 @@ const Product = () => {
     if (sortType) {
       params += "sortType=" + sortType + "&";
     }
-    if (searchParam) {
-      params += "searchParam=" + searchParam + "&";
+    if (search) {
+      params += "search=" + search + "&";
     }
 
     console.log(params);
@@ -81,9 +83,9 @@ const Product = () => {
     setPrice(event.target.value);
   };
 
-  const handleSearch = (event) => {
-    console.log(event.target.value);
-    setSearchParam(event.target.value);
+  const handleSearch = (value) => {
+    console.log(value);
+    setSearch(value);
   };
 
   const handleSorting = (event) => {
@@ -96,12 +98,19 @@ const Product = () => {
   return (
     <div>
       <div>
-        <SearchBar onChange={handleSearch} />
+        <SearchBar
+          onChange={handleSearch}
+          placeholder="Search By Product Name"
+        />
       </div>
       <div className={styles.controls}>
-        <div>
-          <button onClick={handleGridView}></button>
-          <button onClick={handleListView}></button>
+        <div className={styles.views}>
+          <button onClick={handleGridView}>
+            <img src={gridViewRounded}></img>
+          </button>
+          <button onClick={handleListView}>
+            <img src={listViewRounded}></img>
+          </button>
         </div>
         <div className={styles.genre}>
           <select name={headPhoneType.label} onChange={selectHeadphoneType}>
