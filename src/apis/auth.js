@@ -18,6 +18,7 @@ export const loginUser = async ({ userIdentifier, password }) => {
     const reqUrl = `${backendUrl}/auth/login`;
     const reqPayload = { userIdentifier, password };
     const response = await axios.post(reqUrl, reqPayload);
+    console.log("user", response.data);
     return response.data;
   } catch (error) {
     console.log(error);

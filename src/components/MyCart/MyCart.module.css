@@ -1,0 +1,11 @@
+.button {
+  color: #ffffff;
+  background: #2e0052;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.cartLogoAndText {
+  display: flex;
+  justify-content: center;
+}

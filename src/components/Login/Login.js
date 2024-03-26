@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import { useNavigate } from "react-router";
 import { loginUser } from "../../apis/auth";
@@ -6,18 +6,32 @@ import { loginUser } from "../../apis/auth";
 export const Login = () => {
   const navigate = useNavigate();
   const [data, setData] = useState({ userIdentifier: "", password: "" });
+
+  useEffect(() => {
+    alreadyLoggedIn();
+  }, []);
+
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("data:", data);
     const response = await loginUser({ ...data });
+
     if (response) {
       localStorage.setItem("token", response.token);
       localStorage.setItem("userName", response.name);
-      navigate("/");
+      navigate("/home", { state: { user: response } });
+    }
+  };
+
+  const alreadyLoggedIn = () => {
+    const token = localStorage.getItem("token");
+    const userName = localStorage.getItem("userName");
+    console.log("token", userName);
+    if (token && userName) {
+      navigate("/home");
     }
   };
 
@@ -51,11 +65,10 @@ export const Login = () => {
       </div>
 
       <div className={styles.line}>
-        <hr/>
+        <hr />
         <p>New to Musicart?</p>
-        <hr/>
+        <hr />
       </div>
-
 
       <div>
         <p className={styles.button2}>

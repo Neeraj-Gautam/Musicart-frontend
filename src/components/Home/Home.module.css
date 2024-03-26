@@ -33,16 +33,6 @@
   margin-bottom: 5px;
 }
 
-/* .navMenu {
-  display: flex;
-  align-items: center;
-  list-style: none;
-  gap: 50px;
-  color: #000000;
-  font-size: 16.41px;
-  font-weight: 400;
-} */
-
 .navMenu li {
   display: flex;
   padding-top: 15px;
@@ -73,10 +63,9 @@
 }
 
 .navLoginCart img {
-  width: 300px;
-  height: 206px;
-
-  margin-left: 800px;
+  width: 30px;
+  height: 20px;
+  margin-top: 20px;
 }
 
 .navLoginCart button:active {

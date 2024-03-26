@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Register.module.css";
 import { useNavigate } from "react-router";
 // import Button from "../Button/Button";
@@ -6,6 +6,10 @@ import { registerUser } from "../../apis/auth";
 
 const Register = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    alreadyLoggedIn();
+  }, []);
 
   const [data, setData] = useState({
     name: "",
@@ -29,6 +33,13 @@ const Register = () => {
       localStorage.setItem("token", response.token);
       localStorage.setItem("userName", response.name);
       navigate("/");
+    }
+  };
+
+  const alreadyLoggedIn = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/home");
     }
   };
 

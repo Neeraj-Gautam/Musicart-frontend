@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Products.module.css";
 import { getProducts } from "../../apis/products";
-import image0 from "../../assets/products/image7.png";
+import image0 from "../../assets/products/image9.png";
+import cartImage from "../../assets/icon/cartImage.png";
 import { colorOptions } from "../../utils/colorOptions";
 import { HeadphoneTypeOptions } from "../../utils/HeadphoneTypeOptions";
 import { companyOptions } from "../../utils/companyOptions";
@@ -11,7 +13,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import listViewRounded from "../../assets/icon/list-view-rounded.png";
 import gridViewRounded from "../../assets/icon/grid-view-rounded.png";
 
-const Product = () => {
+const Product = ({cart, handleCartChange}) => {
   const [gridView, setGridView] = useState(true);
   const [dataArray, setDataArray] = useState([]);
   const [color, setColor] = useState("");
@@ -21,8 +23,13 @@ const Product = () => {
   const [sortBy, setSortBy] = useState("");
   const [sortType, setSortType] = useState("");
   const [search, setSearch] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if(token) {
+      setLoggedIn(true);
+    }
     loadData();
   }, [color, company, headPhoneType, price, sortBy, sortType, search]);
 
@@ -165,7 +172,21 @@ const Product = () => {
         <div className={styles.gridContainer}>
           {dataArray.map((item, index) => (
             <div key={index} className={styles.gridItem}>
-              <img src={image0} alt="" />
+              <div className={styles.imageContainer}>
+                <Link
+                  to={`/item/${item.uuid}`}
+                  state={{ item: item }}
+                  style={{ color: "#FFF", backgroundColor: "var(--dark-pink)" }}
+                >
+                  <img src={image0} alt="" />
+                </Link>
+                {loggedIn && (<button
+                  className={styles.overlayButton}
+                  onClick={() => handleCartChange(item.uuid)}
+                >
+                  <img src={cartImage} alt="Description of the image" />
+                </button>)}
+              </div>
               <div className={styles.container}>
                 <div className={styles.rowContainer}>
                   <div>

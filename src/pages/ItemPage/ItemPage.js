@@ -1,5 +1,5 @@
 import React from "react";
-import Item from "../../components/Item/Item";
+import {Item} from "../../components/Item/Item";
 
 export const ItemPage = () => {
   return (
