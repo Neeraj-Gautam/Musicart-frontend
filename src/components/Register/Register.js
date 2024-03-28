@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Register.module.css";
 import { useNavigate } from "react-router";
-// import Button from "../Button/Button";
+import { Footer } from "../Footer/Footer";
 import { registerUser } from "../../apis/auth";
 
 const Register = () => {
@@ -49,50 +49,55 @@ const Register = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.h1}>Create an account</h1>
-      <h2 className={styles.h2}>Your personal job finder is here</h2>
-      <input
-        className={styles.input}
-        name="name"
-        value={data.name}
-        onChange={handleChange}
-        type={"text"}
-        placeholder="Name"
-      ></input>
-      <input
-        className={styles.input}
-        name="mobile"
-        value={data.mobile}
-        onChange={handleChange}
-        type={"tel"}
-        placeholder="Mobile"
-      ></input>
-      <input
-        className={styles.input}
-        name="email"
-        value={data.email}
-        onChange={handleChange}
-        type={"email"}
-        placeholder="Email"
-      ></input>
-      <input
-        className={styles.input}
-        name="password"
-        value={data.password}
-        onChange={handleChange}
-        type={"password"}
-        placeholder="Password"
-      ></input>
-      <button onClick={handleSubmit} className={styles.button}>
-        Create Account
-      </button>
-      {/* <Button>Create account</Button> */}
-      <p className={styles.footer}>
-        Already have an account?
-        <span className={styles.underline} onClick={redirectToLoginPage}>
-          Sign in
-        </span>
-      </p>
+      <div className={styles.registerForm}>
+        <h1 className={styles.h1}>Create an account</h1>
+        <h2 className={styles.h2}>Your name</h2>
+        <input
+          className={styles.input}
+          name="name"
+          value={data.name}
+          onChange={handleChange}
+          type={"text"}
+        ></input>
+        <h2 className={styles.h2}>Mobile number</h2>
+        <input
+          className={styles.input}
+          name="mobile"
+          value={data.mobile}
+          onChange={handleChange}
+          type={"tel"}
+        ></input>
+        <h2 className={styles.h2}>Email Id</h2>
+        <input
+          className={styles.input}
+          name="email"
+          value={data.email}
+          onChange={handleChange}
+          type={"email"}
+        ></input>
+        <h2 className={styles.h2}>Password</h2>
+        <input
+          className={styles.input}
+          name="password"
+          value={data.password}
+          onChange={handleChange}
+          type={"password"}
+        ></input>
+        <br />
+        <br />
+        <p>
+          By enrolling your mobile phone number, you consent to receive
+          automated security notifications via text message from Musicart.
+          Message and data rates may apply.
+        </p>
+        <button onClick={handleSubmit} className={styles.button}>
+          Continue
+        </button>
+        <p>
+          By continuing, you agree to Musicart privacy notice and conditions of
+          use.
+        </p>
+      </div>
     </div>
   );
 };

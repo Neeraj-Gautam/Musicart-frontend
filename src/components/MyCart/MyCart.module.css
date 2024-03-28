@@ -9,3 +9,53 @@
   display: flex;
   justify-content: center;
 }
+
+.itemImage img {
+  width: 200px;
+  height: 200px;
+}
+
+.scrollablediv {
+  width: 1136.5px;
+  height: 600px;
+  overflow: auto;
+  border: 1px solid #ccc;
+}
+
+.singleProduct {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.customSelect {
+  width: 200px;
+}
+
+.calculateTotalPrice {
+  display: flex;
+}
+
+.totalMRP {
+  display: inline-block;
+}
+
+.myCart {
+  height: 100%;
+}
+
+/* table , tr, td{
+
+} */
+
+.itemName {
+  font-weight: bold;
+}
+
+.priceDetails button {
+  background-color: #ffd600;
+  width: 286px;
+  height: 67px;
+  font-weight: bold;
+  border: none;
+  border-radius: 11px;
+}

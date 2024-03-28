@@ -5,6 +5,8 @@ import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { ItemPage } from "./pages/ItemPage/ItemPage";
 import { MyCartPage } from "./pages/MyCartPage/MyCartPage";
+import { CheckoutPage } from "./pages/CheckoutPage/CheckoutPage";
+import {SuccessfulPage} from "./pages/SuccessfulPage/SuccessfulPage";
 
 function App() {
   const RedirectToLogin = () => {
@@ -24,6 +26,8 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/item/:uuid" element={<ItemPage />} />
         <Route path="/mycart" element={<MyCartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/Successful" element={<SuccessfulPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,103 @@
+.calculateTotalPrice {
+  display: flex;
+  width: 1300px;
+  margin-left: 60px;
+}
+
+.checkoutHeading {
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  text-decoration: underline;
+}
+.button {
+  color: #ffffff;
+  background: #2e0052;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.deliveryAddress {
+  display: flex;
+  justify-content: space-around;
+  font-weight: 500;
+}
+
+.paymentMethod {
+  display: flex;
+  justify-content: space-around;
+  font-weight: 500;
+}
+
+.invoiceCardContainer {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.heading {
+  color: #b52b00;
+}
+
+.invoiceCard {
+  border: 4px solid #e1e1e1;
+  padding: 20px;
+  border-radius: 4px;
+  width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-left: 840px;
+}
+
+.orderButton button {
+  background-color: #ffd600;
+  border: none;
+  width: 310px;
+  height: 35px;
+  border-radius: 13.33px;
+}
+
+.invoiceItem {
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* .invoiceTotal {
+  border-top: 1px solid #ddd;
+} */
+
+/* .itemLabel,
+.totalLabel {
+  font-weight: bold;
+} */
+
+.itemCost,
+.totalCost {
+  font-weight: bold;
+  color: #333;
+}
+
+.bottomBar {
+  display: flex;
+  border: 4px solid #e1e1e1;
+  border-radius: 16px;
+  object-fit: contain;
+  width: 1047px;
+  height: 91px;
+  align-items: center;
+}
+.placeYourOrder {
+  background-color: #ffd600;
+  object-fit: contain;
+  text-align: center;
+  font-weight: 400;
+  border-radius: 8px;
+  border: none;
+  width: 233px;
+  height: 52px;
+}
+
+.orderTotal {
+  color: #b52b00;
+  font-weight: 600;
+}
