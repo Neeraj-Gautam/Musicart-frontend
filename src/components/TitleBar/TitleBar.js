@@ -12,8 +12,8 @@ import { useParams, useLocation } from "react-router-dom";
 import { addProductIncart, getCart } from "../../apis/cart";
 import { TOKEN, USERNAME } from "../../utils/constants";
 
-export const TitleBar = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+export const TitleBar = ({ showUserInfo, currentPage }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cart, setCart] = useState(null);
   const [numberOfProductInCart, setNumberOfProductInCart] = useState(0);
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export const TitleBar = () => {
     const token = localStorage.getItem(TOKEN);
     const userName = localStorage.getItem(USERNAME);
     if (token) {
-      setLoggedIn(true);
+      setIsLoggedIn(true);
       setUserName(userName);
       loadcart();
     }
@@ -46,6 +46,10 @@ export const TitleBar = () => {
     window.location.reload();
   };
 
+  const handleClick = (page) => {
+    navigate("/" + page);
+  };
+
   const countProductsInCart = (cartData) => {
     try {
       if (cartData && cartData.products) {
@@ -65,11 +69,29 @@ export const TitleBar = () => {
         <div className={styles.titleBarLogo}>
           {<img src={musiCartLogo} />}
           <span className={styles.titleName}> Musicart </span>
-          <span>Home</span>
-          {loggedIn && <span>Invoice</span>}
+          {currentPage === "home" && (
+            <>
+              <span
+                onClick={() => {
+                  handleClick("home");
+                }}
+              >
+                Home
+              </span>
+              {isLoggedIn && (
+                <span
+                  onClick={() => {
+                    handleClick("invoice");
+                  }}
+                >
+                  Invoice
+                </span>
+              )}
+            </>
+          )}
         </div>
 
-        {loggedIn && (
+        {isLoggedIn && (
           <div className={styles.navLoginCart}>
             <button onClick={handleViewcart}>
               <img className={styles.shoppingCart} src={shoppingCart} />
@@ -78,10 +100,12 @@ export const TitleBar = () => {
                 {numberOfProductInCart}
               </span>
             </button>
-            <select onChange={handleChange}>
-              <option value="name">{userName}</option>
-              <option value="logout"> Logout </option>
-            </select>
+            {showUserInfo && (
+              <select onChange={handleChange}>
+                <option value="name">{userName}</option>
+                <option value="logout"> Logout </option>
+              </select>
+            )}
           </div>
         )}
       </div>

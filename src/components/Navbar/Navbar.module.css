@@ -39,7 +39,9 @@
 }
 
 .logout {
-  margin-left: 18%;
+  width: 25%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .logout p {

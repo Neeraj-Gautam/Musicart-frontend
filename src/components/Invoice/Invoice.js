@@ -33,7 +33,7 @@ export const Invoice = () => {
           <button className={styles.button}>Back to Home</button>
         </Link>
       </div>
-      <div>
+      <div className={styles.invoicePage}>
         <div className={styles.myInvoices}>
           <span className={styles.heading}>My Invoices</span>
         </div>
@@ -42,9 +42,10 @@ export const Invoice = () => {
           {invoices.map((item, index) => (
             <div className={styles.invoices}>
               <div className={styles.userDetails}>
-                <img src={invoiceImage} />
+                <div className={styles.invoiceImage}><img src={invoiceImage} /></div>
                 <div className={styles.userInfo}>
-                  <p>{item.name}</p> <p>{item.address}</p>
+                  <p className={styles.name}>{item.name}</p> 
+                  <p className={styles.address}>{item.address}</p>
                 </div>
               </div>
 

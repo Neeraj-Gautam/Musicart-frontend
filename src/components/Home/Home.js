@@ -19,7 +19,7 @@ export const Home = () => {
   return (
     <div>
       <Navbar />
-      <TitleBar />
+      <TitleBar currentPage="home" />
       <div className={styles.homePage}>
         <div className={styles.gradientBox}>
           <p>Grab upto 50% off on Selected headphones</p>
