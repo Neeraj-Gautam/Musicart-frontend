@@ -1,11 +1,12 @@
 import axios from "axios";
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-export const addProductIncart = async (productUuid, quantity) => {
+export const addProductIncart = async (productId, quantity) => {
   try {
     const token = localStorage.getItem("token");
-    const reqUrl = `${backendUrl}/cart/add/product/${productUuid}`;
-    const reqPayload = { token, quantity };
+    axios.defaults.headers.common["Authorization"] = token;
+    const reqUrl = `${backendUrl}/cart/add/product/${productId}`;
+    const reqPayload = { quantity };
     const response = await axios.post(reqUrl, reqPayload);
     console.log(response);
     return response.data;
@@ -17,9 +18,11 @@ export const addProductIncart = async (productUuid, quantity) => {
 export const getCart = async () => {
   try {
     const token = localStorage.getItem("token");
-    const reqUrl = `${backendUrl}/cart/${token}`;
+    axios.defaults.headers.common["Authorization"] = token;
+    const reqUrl = `${backendUrl}/cart/details`;
+    console.log(reqUrl);
     const response = await axios.get(reqUrl);
-    console.log(response);
+
     return response.data;
   } catch (error) {
     console.log(error);

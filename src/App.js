@@ -7,6 +7,7 @@ import { ItemPage } from "./pages/ItemPage/ItemPage";
 import { MyCartPage } from "./pages/MyCartPage/MyCartPage";
 import { CheckoutPage } from "./pages/CheckoutPage/CheckoutPage";
 import {SuccessfulPage} from "./pages/SuccessfulPage/SuccessfulPage";
+import {InvoicePage} from "./pages/InvoicePage/InvoicePage";
 
 function App() {
   const RedirectToLogin = () => {
@@ -27,7 +28,8 @@ function App() {
         <Route path="/item/:uuid" element={<ItemPage />} />
         <Route path="/mycart" element={<MyCartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/Successful" element={<SuccessfulPage />} />
+        <Route path="/successful" element={<SuccessfulPage />} />
+        <Route path="/invoice" element={<InvoicePage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Register.module.css";
+import musiCartLogo from "../../assets/icon/musiCartLogo.png";
 import { useNavigate } from "react-router";
-import { Footer } from "../Footer/Footer";
 import { registerUser } from "../../apis/auth";
+import { Footer } from "../Footer/Footer";
+import { Header } from "../Header/Header";
 
 const Register = () => {
   const navigate = useNavigate();
 
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     alreadyLoggedIn();
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const [data, setData] = useState({
@@ -48,55 +59,76 @@ const Register = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.registerForm}>
-        <h1 className={styles.h1}>Create an account</h1>
-        <h2 className={styles.h2}>Your name</h2>
-        <input
-          className={styles.input}
-          name="name"
-          value={data.name}
-          onChange={handleChange}
-          type={"text"}
-        ></input>
-        <h2 className={styles.h2}>Mobile number</h2>
-        <input
-          className={styles.input}
-          name="mobile"
-          value={data.mobile}
-          onChange={handleChange}
-          type={"tel"}
-        ></input>
-        <h2 className={styles.h2}>Email Id</h2>
-        <input
-          className={styles.input}
-          name="email"
-          value={data.email}
-          onChange={handleChange}
-          type={"email"}
-        ></input>
-        <h2 className={styles.h2}>Password</h2>
-        <input
-          className={styles.input}
-          name="password"
-          value={data.password}
-          onChange={handleChange}
-          type={"password"}
-        ></input>
-        <br />
-        <br />
-        <p>
-          By enrolling your mobile phone number, you consent to receive
-          automated security notifications via text message from Musicart.
-          Message and data rates may apply.
-        </p>
-        <button onClick={handleSubmit} className={styles.button}>
-          Continue
-        </button>
-        <p>
-          By continuing, you agree to Musicart privacy notice and conditions of
-          use.
-        </p>
+    <div>
+      <Header />
+      <div className={styles.container}>
+        <div className={styles.registerForm}>
+          <h1 className={styles.h1}>
+            <strong>Create Account</strong>
+            {viewportWidth < 768 ? (
+              <span>. Don't have an account?</span>
+            ) : (
+              <></>
+            )}
+          </h1>
+          <h2 className={styles.h2}>Your name</h2>
+          <input
+            className={styles.input}
+            name="name"
+            value={data.name}
+            onChange={handleChange}
+            type={"text"}
+          ></input>
+          <h2 className={styles.h2}>Mobile number</h2>
+          <input
+            className={styles.input}
+            name="mobile"
+            value={data.mobile}
+            onChange={handleChange}
+            type={"tel"}
+          ></input>
+          <h2 className={styles.h2}>Email Id</h2>
+          <input
+            className={styles.input}
+            name="email"
+            value={data.email}
+            onChange={handleChange}
+            type={"email"}
+          ></input>
+          <h2 className={styles.h2}>Password</h2>
+          <input
+            className={styles.input}
+            name="password"
+            value={data.password}
+            onChange={handleChange}
+            type={"password"}
+          ></input>
+
+          <p>
+            <strong>
+              {" "}
+              By enrolling your mobile phone number, you consent to receive
+              automated security notifications via text message from Musicart.
+              Message and data rates may apply.
+            </strong>
+          </p>
+          <button onClick={handleSubmit} className={styles.button}>
+            Continue
+          </button>
+          <p>
+            By continuing, you agree to Musicart privacy notice and conditions
+            of use.
+          </p>
+        </div>
+      </div>
+      <p className={styles.signUp}>
+        <strong>
+          Already have an account? <u onclick={redirectToLoginPage}>Sign in</u>
+        </strong>
+      </p>
+      <br />
+      <div>
+        <Footer />
       </div>
     </div>
   );

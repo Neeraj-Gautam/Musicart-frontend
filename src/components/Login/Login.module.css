@@ -2,32 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-}
-
-.header {
-  display: flex;
-  justify-content: center;
-  margin-top: 35px;
-  gap: 4px;
-}
-
-.header span {
-  margin-top: 8px;
-  color: #2e0052;
-  font-size: 44.13px;
-}
-
-.header img {
-  width: 50px;
-  height: 50px;
+  margin-top: 30px;
 }
 
 .loginForm {
-  width: 35vw;
+  width: 470px;
+  max-width: 470px;
   padding: 20px;
-  min-height: 60vh;
-  min-width: 20vw;
   box-sizing: border-box;
   flex-direction: column;
   border: 3px solid;
@@ -36,8 +17,9 @@
 }
 
 .h1 {
-  font-size: 32px;
+  font-size: 26px;
   margin-bottom: 16px;
+  font-weight: 400;
 }
 
 .h2 {
@@ -48,18 +30,20 @@
 }
 
 .input {
-  padding: 8px;
-  width: 475px;
-  border-radius: 6px;
+  padding: 18px;
+  width: 100%;
+  border-radius: 8px;
   border: none;
   margin: 12px 0px;
   height: 18px;
+  box-sizing: border-box;
   border: 2px solid #c2c2c2;
   box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0.01);
 }
 
 .button {
-  width: 495px;
+  width: 100%;
+  max-width: 495px;
   padding: 9px;
   font-size: 20px;
   background: #2e0052;
@@ -69,20 +53,28 @@
   border: none;
   font-weight: 500;
   margin-bottom: 16px;
+  cursor: pointer;
 }
 
 .line {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+}
+
+.line img {
+  height: 1px;
+  width: 10%;
 }
 
 .createAccount {
   display: flex;
+  width: 100%;
   justify-content: center;
-  align-items: center;
 }
-
-.button2 {
-  width: 35vw;
+.createAccount button {
+  width: 470px;
   padding: 8px;
   font-size: 20px;
   background: #ffffff;
@@ -97,4 +89,69 @@
   font-weight: 400;
   margin-bottom: 16px;
   text-align: center;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    background-color: #2e0052;
+    margin-top: 0px;
+    padding: 2%;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .header span {
+    color: #ffffff;
+    font-size: 18px;
+  }
+  .header img {
+    width: 40px;
+    height: 40px;
+    margin-left: 1px;
+  }
+
+  .container {
+    margin-top: 20px;
+  }
+
+  .mobileheader {
+    color: #2e0052;
+  }
+
+  .h1 {
+    font-weight: 500;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .h1 span {
+    color: #000000;
+    font-weight: 100;
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .loginForm {
+    width: 80%;
+    padding: 11px;
+    box-sizing: border-box;
+    flex-direction: column;
+    border: 3px solid;
+    border-radius: 5px;
+    border-color: #d9d9d9;
+    font-size: 13px;
+  }
+
+  .createAccount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 80%;
+  }
+
+  .footer {
+    margin-top: 30%;
+  }
 }

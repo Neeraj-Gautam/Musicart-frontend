@@ -1,37 +1,50 @@
 .navbar {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   background: #2e0052;
   box-shadow: 0 1px 3px -2px black;
-  
+  width: 100%;
+  height: 2%;
 }
 
-.navbar p {
+.navPhone {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.navPhone img {
+  width: 25px;
+  height: 25px;
+  margin-left: 15%;
   color: #ffffff;
 }
 
-.navbar img {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+.navPhone p {
+  margin-left: 8%;
+  color: #ffffff;
+  font-size: 15px;
 }
 
-.navLogo {
-  position: fixed;
-  left: 20px;
-  width: 80px;
-  object-fit: contain;
+.navInfo {
+  width: 65%;
   display: flex;
-  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.navLogo p {
-  font-size: 18px;
-  font-weight: 500;
-  padding-top: 15px;
-  margin: auto;
-  width: 123px;
-  height: 21px;
-  margin-left: 0px;
-  top: 21px;
+.navInfo p {
+  color: #ffffff;
+  margin-left: 50%;
+}
+
+.logout {
+  margin-left: 18%;
+}
+
+.logout p {
+  display: flex;
+  justify-self: flex-end;
+  color: #ffffff;
+  cursor: pointer;
 }

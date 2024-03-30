@@ -1,0 +1,93 @@
+.titleBar {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  margin-top: 22px;
+  width: 1300px;
+  max-width: 1300px;
+  margin-left: 95px;
+}
+
+.titleBarLogo {
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  gap: 11px;
+}
+
+.titleBarLogo img {
+  width: 40px;
+  height: 40px;
+}
+.titleBarLogo span {
+  cursor: pointer;
+}
+
+.titleName {
+  color: #2e0052;
+  font-size: 24.13px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.navMenu li {
+  display: flex;
+  padding-top: 15px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5px;
+  cursor: pointer;
+}
+
+.navLoginCart {
+  display: flex;
+  align-items: center;
+}
+
+.navLoginCart button {
+  width: 140px;
+  height: 30px;
+  display: flex;
+  outline: none;
+  border: 1px solid #7a7a7a;
+  border-radius: 47px;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  background: green;
+  cursor: pointer;
+}
+
+.shoppingCart {
+  width: 25 px;
+  height: 14px;
+  margin-top: 7px;
+  margin-left: 7px;
+}
+.viewCart {
+  width: 20 px;
+  height: 12px;
+  margin-top: 7px;
+  margin-left: 2px;
+}
+
+.noOfProducts {
+  font-size: 15px;
+  margin-left: 8px;
+  margin-top: 6px;
+}
+
+.navLoginCart button:active {
+  background: #f3f3f3;
+}
+.navCartCount {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+
+  border-radius: 11px;
+  font-size: 14px;
+}

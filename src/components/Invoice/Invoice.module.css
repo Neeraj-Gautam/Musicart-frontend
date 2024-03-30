@@ -1,0 +1,94 @@
+.button {
+  color: #ffffff;
+  background: #2e0052;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.myInvoices {
+  display: flex;
+  justify-content: center;
+}
+
+.heading {
+  width: 215px;
+  height: 47px;
+  color: #000000;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.invoices {
+  margin-left: 8%;
+  margin-right: 6%;
+  margin-bottom: 1%;
+  border-bottom: 2px solid #e1e1e1;
+  display: flex;
+  justify-content: space-between;
+}
+.userDetails {
+  display: flex;
+  color: #797979;
+}
+
+.invoices img {
+  width: 50px;
+  height: 50px;
+  padding: 20%;
+}
+
+.invoiceLink {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.invoiceLink button {
+  width: 120px;
+  height: 30px;
+  background-color: #2e0052;
+  border-radius: 9px;
+  color: #ffffff;
+  padding: 0.5%;
+  cursor: pointer;
+}
+
+.userInfo {
+  max-width: 50%;
+}
+.userInfo p {
+  max-width: 25%;
+}
+
+@media (max-width: 768px) {
+  /* .registerForm {
+    width: 85%;
+    padding: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+    border: 2px solid;
+    border-radius: 5px;
+    border-color: #d0d0d0;
+  }
+
+  .h1 {
+    font-weight: 500;
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .h1 span {
+    color: #000000;
+    font-weight: 100;
+    font-size: 13px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .input {
+    width: 92%;
+  }
+
+  .signUp {
+    margin-top: 10%;
+  } */
+}

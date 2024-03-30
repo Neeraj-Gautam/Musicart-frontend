@@ -13,7 +13,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import listViewRounded from "../../assets/icon/list-view-rounded.png";
 import gridViewRounded from "../../assets/icon/grid-view-rounded.png";
 
-const Product = ({cart, handleCartChange}) => {
+const Product = ({ cart, handleCartChange }) => {
   const [gridView, setGridView] = useState(true);
   const [dataArray, setDataArray] = useState([]);
   const [color, setColor] = useState("");
@@ -27,7 +27,7 @@ const Product = ({cart, handleCartChange}) => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if(token) {
+    if (token) {
       setLoggedIn(true);
     }
     loadData();
@@ -63,6 +63,7 @@ const Product = ({cart, handleCartChange}) => {
 
     console.log(params);
     const response = await getProducts(params);
+    console.log(response);
     setDataArray(response);
   };
 
@@ -180,12 +181,14 @@ const Product = ({cart, handleCartChange}) => {
                 >
                   <img src={image0} alt="" />
                 </Link>
-                {loggedIn && (<button
-                  className={styles.overlayButton}
-                  onClick={() => handleCartChange(item.uuid)}
-                >
-                  <img src={cartImage} alt="Description of the image" />
-                </button>)}
+                {loggedIn && (
+                  <button
+                    className={styles.overlayButton}
+                    onClick={() => handleCartChange(item.uuid)}
+                  >
+                    <img src={cartImage} alt="Description of the image" />
+                  </button>
+                )}
               </div>
               <div className={styles.container}>
                 <div className={styles.rowContainer}>

@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import musiCartLogo from "../../assets/icon/musiCartLogo.png";
+import line from "../../assets/icon/Line.png";
 import { useNavigate } from "react-router";
 import { loginUser } from "../../apis/auth";
 import { Footer } from "../Footer/Footer";
+import { Header } from "../Header/Header";
 
 export const Login = () => {
   const navigate = useNavigate();
   const [data, setData] = useState({ userIdentifier: "", password: "" });
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     alreadyLoggedIn();
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const handleChange = (e) => {
@@ -39,13 +49,13 @@ export const Login = () => {
 
   return (
     <div>
-      <div className={styles.header}>
-        <img src={musiCartLogo} alt="musiCartLogo" />
-        <span><strong>Musicart</strong></span>
-      </div>
+      <Header />
       <div className={styles.container}>
         <div className={styles.loginForm}>
-          <h1 className={styles.h1}>Sign in</h1>
+          <h1 className={styles.h1}>
+            <strong>Sign in</strong>
+            {viewportWidth < 768 ? <span>. Already a customer</span> : <></>}
+          </h1>
           <h2 className={styles.h2}>Enter your email or mobile number</h2>
           <input
             className={styles.input}
@@ -74,22 +84,19 @@ export const Login = () => {
         </div>
       </div>
       <div className={styles.line}>
-        <hr />
-        <p>New to Musicart?</p>
-        <hr />
+        <img src={line} />
+        <span>&nbsp;&nbsp;&nbsp;New to Musicart? &nbsp;&nbsp;&nbsp;</span>
+        <img src={line} />
       </div>
 
       <div className={styles.createAccount}>
-        <p className={styles.button2}>
-          <span
-            onClick={() => navigate("/register")}
-            className={styles.underline}
-          >
-            Create your Musicart account
-          </span>
-        </p>
+        <button onClick={() => navigate("/register")}>
+          Create your Musicart account
+        </button>
       </div>
-      <div>
+      <br />
+      <br />
+      <div className={styles.footer}>
         <Footer />
       </div>
     </div>
