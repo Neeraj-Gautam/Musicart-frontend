@@ -3,14 +3,22 @@ import Navbar from "../Navbar/Navbar";
 import styles from "./Invoice.module.css";
 import { Link } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
-import { MobileFooter } from "../Footer/MobileFooter";
 import { TitleBar } from "../TitleBar/TitleBar";
 import { getOrders } from "../../apis/invoice";
 import invoiceImage from "../../assets/icon/invoice.png";
+import MobileSearchBar from "../SearchBar/MobileSearchBar";
+import { useNavigate } from "react-router";
+
 export const Invoice = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     getInvoices();
   }, []);
+
+  const viewHome = () => {
+    navigate("/home");
+  };
 
   const [invoices, setInvoices] = useState([]);
 
@@ -25,15 +33,12 @@ export const Invoice = () => {
   return (
     <div>
       <Navbar />
-      <MobileFooter />
       <TitleBar />
+      <MobileSearchBar />
       <div>
-        <Link
-          to={`/home`}
-          style={{ color: "#FFF", backgroundColor: "var(--dark-pink)" }}
-        >
-          <button className={styles.button}>Back to Home</button>
-        </Link>
+        <button onClick={viewHome} className={styles.button}>
+          Back to Home
+        </button>
       </div>
       <div className={styles.invoicePage}>
         <div className={styles.myInvoices}>
@@ -61,7 +66,6 @@ export const Invoice = () => {
         </div>
       </div>
       <div className={styles.footer}>
-        {/* <MobileFooter /> */}
         <Footer />
       </div>
     </div>

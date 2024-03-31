@@ -4,23 +4,33 @@ import styles from "./Home.module.css";
 import bannerImage from "../../assets/icon/bannerImage.png";
 import Product from "../Products/Product";
 import { Footer } from "../Footer/Footer";
-import { useParams, useLocation } from "react-router-dom";
-import { addProductIncart, getCart } from "../../apis/cart";
-import { useNavigate } from "react-router";
+import { addProductIncart } from "../../apis/cart";
 import { TitleBar } from "../TitleBar/TitleBar";
+import MobileSearchBar from "../SearchBar/MobileSearchBar";
 
 export const Home = () => {
   const [cart, setCart] = useState(null);
+  const [mobileSearch, setMobileSearch] = useState("");
 
-  const addProduct = async (productUuid) => {
-    const cartData = await addProductIncart(productUuid);
+  const addProduct = async (productId) => {
+    const cartData = await addProductIncart(productId);
     setCart(cartData);
+  };
+
+  const handleMobileSearch = (newValue) => {
+    setMobileSearch(newValue);
   };
 
   return (
     <div>
-      <Navbar showLogoutOption={false}/>
-      <TitleBar currentPage="home" showUserInfo={true} cartDetails={cart} showCartInfo={true} />
+      <Navbar showLogoutOption={false} />{" "}
+      <TitleBar
+        currentPage="home"
+        showUserInfo={true}
+        cartDetails={cart}
+        showCartInfo={true}
+      />
+      <MobileSearchBar handleMobileSearch={handleMobileSearch}/>
       <div className={styles.homePage}>
         <div className={styles.gradientBox}>
           <div className={styles.bannerText}>
@@ -32,12 +42,9 @@ export const Home = () => {
         </div>
         <br />
         <div>
-          <Product cart={cart} handleCartChange={addProduct} />
+          <Product cart={cart} handleCartChange={addProduct} mobileSearch={mobileSearch} />
         </div>
       </div>
-      <br />
-      <br />
-      <br />
       <div>
         <Footer />
       </div>

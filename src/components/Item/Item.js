@@ -13,7 +13,7 @@ import { TitleBar } from "../TitleBar/TitleBar";
 
 export const Item = () => {
   const [cart, setCart] = useState(null);
-  const { uuid } = useParams();
+  const { productId } = useParams();
   const [item, setItem] = useState();
   const navigate = useNavigate();
   const [pageName, setPageName] = useState("");
@@ -35,7 +35,7 @@ export const Item = () => {
 
   const loadData = async () => {
     try {
-      const response = await getProduct(uuid);
+      const response = await getProduct(productId);
       setItem(response);
       if (response && response.brand && response.modelName) {
         setPageName(response.brand + " " + response.modelName);
@@ -43,13 +43,13 @@ export const Item = () => {
     } catch (error) {}
   };
 
-  const addProduct = async (productUuid) => {
+  const addProduct = async (productId) => {
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/login");
       return;
     }
-    const cartData = await addProductIncart(productUuid);
+    const cartData = await addProductIncart(productId);
     setCart(cartData);
   };
 
@@ -127,7 +127,7 @@ export const Item = () => {
               <div className={styles.buttons}>
                 <button
                   className={styles.addToCart}
-                  onClick={() => addProduct(item.uuid)}
+                  onClick={() => addProduct(item.productId)}
                 >
                   Add to cart
                 </button>

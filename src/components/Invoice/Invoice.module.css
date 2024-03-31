@@ -84,34 +84,5 @@
 }
 
 @media (max-width: 768px) {
-  /* .registerForm {
-    width: 85%;
-    padding: 20px;
-    box-sizing: border-box;
-    flex-direction: column;
-    border: 2px solid;
-    border-radius: 5px;
-    border-color: #d0d0d0;
-  }
 
-  .h1 {
-    font-weight: 500;
-    font-size: 15px;
-    font-family: "Roboto", sans-serif;
-  }
-
-  .h1 span {
-    color: #000000;
-    font-weight: 100;
-    font-size: 13px;
-    font-family: "Roboto", sans-serif;
-  }
-
-  .input {
-    width: 92%;
-  }
-
-  .signUp {
-    margin-top: 10%;
-  } */
 }

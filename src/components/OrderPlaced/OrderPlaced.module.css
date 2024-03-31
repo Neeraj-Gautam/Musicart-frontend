@@ -1,8 +1,137 @@
-.mainContent {
+.bannerContainer {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
   align-items: center;
   justify-content: center;
+  visibility: visible;
+  opacity: 1;
+  border: 3px solid #e3e3e3;
+  border-radius: 11px;
+  margin-top: 3%;
+  margin-left: 28%;
+  margin-bottom: 8.1%;
+  padding: 2%;
+  box-shadow: 14px 16px 23px 2px rgba(0, 0, 0, 0.11);
 }
-/* 
 .titleBar {
-  margin-top: 0px !important;
-} */
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  padding-top: 20px;
+  margin-top: 25px;
+  margin-left: 6%;
+  margin-right: 6%;
+}
+.titleBarLogo {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  gap: 11px;
+}
+
+.titleBarLogo img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 25px;
+}
+.titleBarLogo span {
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.titleName {
+  color: #2e0052;
+  font-size: 24.13px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.message {
+  color: #000000;
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.email {
+  color: #969696;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+.bannerContainer img {
+  width: 18%;
+  margin-top: 20px;
+}
+
+.bannerContainer button {
+  background-color: #2e0052;
+  color: #ffffff;
+  width: 50%;
+  padding: 2%;
+  border-radius: 14px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6%;
+  margin-top: 5%;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.bannerContainer button:active {
+  border: 2px #110ebe solid;
+  transform: scale(1);
+}
+
+.bannerContainer button:hover {
+  background-color: #180129;
+}
+
+.mobileFooter {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .titleBar {
+    background-color: #2e0052;
+    width: 100%;
+    height: 48px;
+    margin: 0px;
+  }
+  .titleBarLogo {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .titleBarLogo span {
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 18.67px;
+    margin-top: 20px;
+  }
+  .titleBar img {
+    width: 40px;
+    margin: 4px 0px 0px 6px;
+  }
+
+  .bannerContainer {
+    margin: 150px 18px 134px 25px;
+    padding: 20px 10px 100px 10px;
+    width: 80%;
+    text-align: center;
+  }
+
+  .bannerContainer img {
+    width: 100px;
+  }
+
+  .email {
+    font-size: 15px;
+  }
+  .bannerContainer button {
+    padding: 10px 50px 10px 50px;
+    width: 305px;
+    border-radius: 10px;
+  }
+}

@@ -24,7 +24,7 @@
 hr {
   border-top: 2px solid #e1e1e1;
   margin-left: 6%;
-  max-width: 62.5%;
+  width: 66%;
   /* margin-bottom: 20px; */
 }
 
@@ -113,4 +113,27 @@ td {
   justify-content: space-around;
   margin: 20px 20px 20px 20px;
   font-weight: 500;
+}
+
+.cartMobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .cartMobile {
+    display: block;
+  }
+  .cartWide {
+    display: none;
+  }
+  .backToHome {
+    margin-top: 10%;
+    margin-left: 5%;
+  }
+
+  .backToHome img {
+    padding: 4px;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
+  }
 }

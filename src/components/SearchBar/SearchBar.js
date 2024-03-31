@@ -11,7 +11,12 @@ const SearchBar = ({ placeholder, onChange }) => {
   return (
     <div className={styles.searchContainer}>
       <img src={searchBarIcon} />
-      <input type="text" placeholder={placeholder} className={styles.searchBox} onChange={handleChange} />
+      <input
+        type="text"
+        placeholder={placeholder}
+        className={styles.searchBox}
+        onChange={handleChange}
+      />
     </div>
   );
 };

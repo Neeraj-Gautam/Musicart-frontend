@@ -80,16 +80,18 @@ export const Checkout = () => {
         <div className={styles.checkoutInfo}>
           <div className={styles.deliveryAddress}>
             <span className={styles.heading}>1. Delivery address</span>
-            <div>
+            <div className={styles.deliveryAddressInput}>
               <span>{userName}</span>
-              <textarea>104 kk hh nagar, Lucknow Uttar Pradesh 226025</textarea>
+              <textarea disabled>
+                104 kk hh nagar, Lucknow Uttar Pradesh 226025
+              </textarea>
             </div>
           </div>
-
+          <hr />
           <div className={styles.paymentMethod}>
             <span className={styles.heading}>2. Payment method</span>
             <select>
-              <option value="Mode of payment" disabled selected>
+              <option value="Mode of payment" hidden>
                 Mode of payment
               </option>
               <option value="option1">Pay on Delivery</option>
@@ -97,7 +99,7 @@ export const Checkout = () => {
               <option value="option3">Card</option>
             </select>
           </div>
-
+          <hr />
           <div className={styles.paymentMethod}>
             <span className={styles.heading}>3. Review items and delivery</span>
             {/* dummy data */}
@@ -110,11 +112,14 @@ export const Checkout = () => {
               <option value="option3">Card</option>
             </select>
           </div>
+          <hr />
         </div>
 
         <div className={styles.invoiceCard}>
-          <div className={styles.orderButton}>
-            <button>Place your order</button>
+          <div className={styles.Order}>
+            <button>
+              <span>Place your order</span>
+            </button>
             <p>
               By placing your order, you agree to Musicart privacy notice and
               conditions of use.
@@ -122,20 +127,26 @@ export const Checkout = () => {
           </div>
           <hr />
           <div className={styles.invoiceItem}>
-            <p>Order Summary</p>
+            <strong>
+              <p>Order Summary</p>
+            </strong>
             <p>
               <span>Items : </span>
-              <span>₹3500.00</span>
+              <span className={styles.orderValues}>₹3500.00</span>
             </p>
 
             <p>
               <span>Delivery : </span>
-              <span>₹45.00</span>
+              <span className={styles.orderValues}>₹45.00</span>
             </p>
             <hr />
             <p>
-              <strong>Order Total : </strong>
-              <strong>₹3545.00</strong>
+              <span>
+                <strong>Order Total : </strong>
+              </span>
+              <span className={styles.orderValuesTotal}>
+                <strong>₹3545.00</strong>
+              </span>
             </p>
           </div>
         </div>
@@ -143,12 +154,12 @@ export const Checkout = () => {
 
       <div className={styles.bottomBar}>
         <button className={styles.placeYourOrder}>Place your order</button>
-        <div>
-          <p className={styles.orderTotal}>Order Total : ₹3545.00</p>
-          <p>
+        <div className={styles.bottomBarText}>
+          <span className={styles.orderTotal}>Order Total : ₹3545.00</span>
+          <span>
             By placing your order, you agree to Musicart privacy notice and
             conditions of use.
-          </p>
+          </span>
         </div>
       </div>
 
