@@ -125,7 +125,7 @@ td {
   }
 
   .mobileViewItems {
-    margin-top: 100px;
+    margin-top: 10px;
     max-width: 90%;
     margin-left: 20px;
     background-color: #dbdbdb;
@@ -154,5 +154,46 @@ td {
   .mobileViewItemImage img {
     width: 65%;
     border-radius: 3.54px;
+  }
+  .mobileViewTotalPrice {
+    margin-left: 10px;
+    font-weight: 450;
+    font-size: 18px;
+  }
+
+  .mobileViewFinalAmount {
+    margin: 30px 0px 10px 20px;
+  }
+  td {
+    padding: 10px 10px 10px 0px;
+  }
+  .mobileViewPlaceOrder {
+    margin-left: 10px;
+    width: 100px;
+  }
+
+  .mobileViewPlaceOrder button {
+    cursor: pointer;
+    background-color: #ffd600;
+    width: 350%;
+    height: 40px;
+    font-weight: bold;
+    border: none;
+    border-radius: 11px;
+    margin-bottom: 60px;
+  }
+  .mobileViewPlaceOrder button:active {
+    border: 2px #110ebe solid;
+    transform: scale(1);
+  }
+
+  .mobileBackButton {
+    border: 2px solid #ffffff;
+    margin: 100px 20px 30px 20px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.33);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    padding: 2px 0px 1px 4px;
   }
 }

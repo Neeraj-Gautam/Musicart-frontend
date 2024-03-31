@@ -12,6 +12,7 @@ import image0 from "../../assets/products/image6.png";
 import backButton from "../../assets/icon/backButton.png";
 import { convenienceFee } from "../../utils/constants";
 import MobileSearchBar from "../SearchBar/MobileSearchBar";
+import { formatNumberIndianStyle } from "../../utils/UtilFunctions/util";
 
 export const MyCart = () => {
   const [cart, setCart] = useState(null);
@@ -228,6 +229,9 @@ export const MyCart = () => {
       {viewportWidth < 768 ? (
         <div>
           <MobileSearchBar />
+          <div className={styles.mobileBackButton}>
+            <img src={backButton} onClick={viewProducts} />
+          </div>
           <div>
             <div className={styles.mobileViewItems}>
               {cart &&
@@ -241,7 +245,9 @@ export const MyCart = () => {
                         {item?.product.brand} {item?.product.modelName}
                       </p>
                       <p style={{ "font-size": "18px" }}>
-                        <strong>₹{item?.product.price} </strong>
+                        <strong>
+                          ₹{formatNumberIndianStyle(item?.product.price)}{" "}
+                        </strong>
                       </p>
                       <p style={{ "font-size": "14px" }}>
                         Colour : {item?.product.color}
@@ -250,8 +256,46 @@ export const MyCart = () => {
                     </div>
                   </div>
                 ))}
+
+              <div className={styles.mobileViewTotalPrice}>
+                <table>
+                  <tr>
+                    <td>Total MRP</td>
+                    <td>₹{formatNumberIndianStyle(totalMrp)}</td>
+                  </tr>
+
+                  <tr>
+                    <td>Discount on MRP</td>
+                    <td>₹0</td>
+                  </tr>
+
+                  <tr>
+                    <td>Convenience Fee</td>
+                    <td>₹{numberOfProductInCart > 0 ? convenienceFee : 0}</td>
+                  </tr>
+                  <br />
+                </table>
+              </div>
+            </div>
+            <div className={styles.mobileViewFinalAmount}>
+              <strong>Total Amount &nbsp; &nbsp;</strong>
+              <strong>
+                ₹
+                {formatNumberIndianStyle(
+                  totalMrp + (numberOfProductInCart > 0 ? convenienceFee : 0)
+                )}
+              </strong>
             </div>
           </div>
+          <div className={styles.mobileViewPlaceOrder}>
+            <button
+              onClick={handlePlaceOrder}
+              disabled={numberOfProductInCart == 0}
+            >
+              PLACE ORDER
+            </button>
+          </div>
+          <Footer currentPage="mycart" />
         </div>
       ) : (
         <></>

@@ -13,6 +13,7 @@ import { SortOptions } from "../../utils/SortOptions";
 import SearchBar from "../SearchBar/SearchBar";
 import listViewRounded from "../../assets/icon/list-view-rounded.png";
 import gridViewRounded from "../../assets/icon/grid-view-rounded.png";
+import {formatNumberIndianStyle} from "../../utils/UtilFunctions/util"
 
 const Product = ({ cart, handleCartChange, mobileSearch }) => {
   const [gridView, setGridView] = useState(false);
@@ -127,14 +128,6 @@ const Product = ({ cart, handleCartChange, mobileSearch }) => {
     setSortType(sortOption.sortType);
   };
 
-  const formatNumberIndianStyle = (x) => {
-    x = x.toString();
-    let lastThree = x.substring(x.length - 3);
-    let otherNumbers = x.substring(0, x.length - 3);
-    if (otherNumbers != "") lastThree = "," + lastThree;
-    let res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-    return res;
-  };
 
   return (
     <div>

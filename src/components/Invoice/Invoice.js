@@ -27,7 +27,6 @@ export const Invoice = () => {
     try {
       const response = await getOrders();
       setInvoices(response);
-      console.log(response);
     } catch (error) {}
   };
 
