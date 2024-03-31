@@ -10,24 +10,29 @@ import { useNavigate } from "react-router";
 import { TitleBar } from "../TitleBar/TitleBar";
 
 export const Home = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
   const [cart, setCart] = useState(null);
-  const [numberOfProductInCart, setNumberOfProductInCart] = useState(0);
-  const navigate = useNavigate();
-  const [userName, setUserName] = useState("");
+
+  const addProduct = async (productUuid) => {
+    const cartData = await addProductIncart(productUuid);
+    setCart(cartData);
+  };
 
   return (
     <div>
-      <Navbar />
-      <TitleBar currentPage="home" />
+      <Navbar showLogoutOption={false}/>
+      <TitleBar currentPage="home" showUserInfo={true} cartDetails={cart} showCartInfo={true} />
       <div className={styles.homePage}>
         <div className={styles.gradientBox}>
-          <p>Grab upto 50% off on Selected headphones</p>
-          {<img src={bannerImage} />}
+          <div className={styles.bannerText}>
+            Grab upto 50% off on Selected headphones
+          </div>
+          <div className={styles.logo}>
+            <img src={bannerImage} />
+          </div>
         </div>
-
+        <br />
         <div>
-          <Product />
+          <Product cart={cart} handleCartChange={addProduct} />
         </div>
       </div>
       <br />

@@ -12,22 +12,30 @@ import { useParams, useLocation } from "react-router-dom";
 import { addProductIncart, getCart } from "../../apis/cart";
 import { TOKEN, USERNAME } from "../../utils/constants";
 
-export const TitleBar = ({ showUserInfo, currentPage }) => {
+export const TitleBar = ({
+  showUserInfo,
+  showCartInfo,
+  currentPage,
+  cartDetails,
+}) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cart, setCart] = useState(null);
   const [numberOfProductInCart, setNumberOfProductInCart] = useState(0);
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
+  const [initials, setInitials] = useState("");
 
   useEffect(() => {
+    console.log("run...");
     const token = localStorage.getItem(TOKEN);
     const userName = localStorage.getItem(USERNAME);
     if (token) {
       setIsLoggedIn(true);
       setUserName(userName);
+      setInitials(getInitials(userName));
       loadcart();
     }
-  }, []);
+  }, [cartDetails]);
 
   const loadcart = async () => {
     const cartData = await getCart();
@@ -50,8 +58,21 @@ export const TitleBar = ({ showUserInfo, currentPage }) => {
     navigate("/" + page);
   };
 
+  const getInitials = (name) => {
+    if (name) {
+      const words = name.trim().split(/\s+/);
+      let initials = "";
+      for (let i = 0; i < words.length && initials.length < 2; i++) {
+        initials += words[i].charAt(0).toUpperCase();
+      }
+      console.log(initials);
+      return initials;
+    }
+  };
+
   const countProductsInCart = (cartData) => {
     try {
+      console.log(cartData);
       if (cartData && cartData.products) {
         let count = 0;
         for (let i = 0; i < cartData.products.length; i++) {
@@ -63,6 +84,7 @@ export const TitleBar = ({ showUserInfo, currentPage }) => {
     } catch (error) {}
     return 0;
   };
+
   return (
     <div>
       <div className={styles.titleBar}>
@@ -89,19 +111,27 @@ export const TitleBar = ({ showUserInfo, currentPage }) => {
               )}
             </>
           )}
+
+          {currentPage && currentPage !== "home" && (
+            <div className={styles.pageName}>
+              <span>Home/ {currentPage}</span>
+            </div>
+          )}
         </div>
 
-        {isLoggedIn && (
+        {showCartInfo && isLoggedIn && (
           <div className={styles.navLoginCart}>
-            <button onClick={handleViewcart}>
-              <img className={styles.shoppingCart} src={shoppingCart} />
-              <img className={styles.viewCart} src={viewCart} />
-              <span className={styles.noOfProducts}>
-                {numberOfProductInCart}
-              </span>
-            </button>
+            <div className={styles.cart}>
+              <button onClick={handleViewcart}>
+                <img className={styles.shoppingCart} src={shoppingCart} />
+                <img className={styles.viewCart} src={viewCart} />
+                <span className={styles.noOfProducts}>
+                  &nbsp;{numberOfProductInCart}
+                </span>
+              </button>
+            </div>
             {showUserInfo && (
-              <select onChange={handleChange}>
+              <select className={styles.userProfile} onChange={handleChange}>
                 <option value="name">{userName}</option>
                 <option value="logout"> Logout </option>
               </select>

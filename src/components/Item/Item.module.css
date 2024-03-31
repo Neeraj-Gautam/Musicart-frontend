@@ -9,8 +9,14 @@
 .button {
   color: #ffffff;
   background: #2e0052;
-  border-radius: 14px;
+  border-radius: 10px;
   cursor: pointer;
+  padding: 0.5% 1% 0.5% 1%;
+}
+
+.image {
+  width: 50%;
+  height: 50%;
 }
 
 .fullName {
@@ -18,23 +24,41 @@
   font-family: "Roboto";
   font-size: 24px;
   line-height: 32px;
+  margin-top: 25px;
+  margin-bottom: 10px;
 }
 
 .mainContent {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+  margin-top: 3%;
 }
 
 .info {
   display: flex;
   flex-direction: column;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+.info ul {
+  margin-top: 0px;
+}
+.smallPicsContainer {
+  display: flex;
+  margin-top: 2%;
+  max-width: 80%;
 }
 
-.mainContent img {
-  border-radius: 5px;
-  border-color: #2e0052;
-  width: 500px; /* Set the width of the square */
-  height: 500px; /* Set the height of the square */
+.smallPics {
+  width: 67%;
+}
+
+.smallPics img {
+  border: 2px solid #000000;
+  margin-right: 10px;
+  border-radius: 10px;
+  width: 206px;
+  height: 150px;
 }
 
 .buttons {
@@ -54,6 +78,15 @@
   cursor: pointer;
 }
 
+.addToCart:active {
+  border: 2px #110ebe solid;
+  transform: scale(1);
+}
+
+.addToCart:hover {
+  background-color: #debb0b;
+}
+
 .buyNow {
   color: #000000;
   width: 230px;
@@ -64,4 +97,46 @@
   text-align: center;
   cursor: pointer;
   margin-top: 8px;
+}
+
+.buyNow:active {
+  border: 2px #110ebe solid;
+  transform: scale(1);
+}
+
+.buyNow:hover {
+  background-color: #ffd600;
+}
+
+@media (max-width: 768px) {
+  .registerForm {
+    width: 85%;
+    padding: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+    border: 2px solid;
+    border-radius: 5px;
+    border-color: #d0d0d0;
+  }
+
+  .h1 {
+    font-weight: 500;
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .h1 span {
+    color: #000000;
+    font-weight: 100;
+    font-size: 13px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .input {
+    width: 92%;
+  }
+
+  .signUp {
+    margin-top: 10%;
+  }
 }

@@ -6,8 +6,9 @@ import { HomePage } from "./pages/HomePage/HomePage";
 import { ItemPage } from "./pages/ItemPage/ItemPage";
 import { MyCartPage } from "./pages/MyCartPage/MyCartPage";
 import { CheckoutPage } from "./pages/CheckoutPage/CheckoutPage";
-import {SuccessfulPage} from "./pages/SuccessfulPage/SuccessfulPage";
-import {InvoicePage} from "./pages/InvoicePage/InvoicePage";
+import { SuccessfulPage } from "./pages/SuccessfulPage/SuccessfulPage";
+import { InvoicePage } from "./pages/InvoicePage/InvoicePage";
+import { OrderPlacedPage } from "./pages/OrderPlacedPage/OrderPlacedPage";
 
 function App() {
   const RedirectToLogin = () => {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/successful" element={<SuccessfulPage />} />
         <Route path="/invoice" element={<InvoicePage />} />
+        <Route path="/orderplaced" element={<OrderPlacedPage />} />
       </Routes>
     </BrowserRouter>
   );

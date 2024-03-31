@@ -1,7 +1,7 @@
 .homePage {
-  width: 1300px;
-  margin-left: 95px;
-  max-width: 1316px;
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-top: 0px;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -9,13 +9,31 @@
 .gradientBox {
   height: 207px;
   display: flex;
-  margin-top: 55px;
+  justify-content: flex-start;
+  margin-top: 30px;
   border-radius: 29px;
   background-image: linear-gradient(to right, #7286b4 0%, #e794ce 100%);
 }
 
 .gradientBox img {
   width: 350px;
-  height: 244px;
-  margin-left: 800px;
+  height: 115%;
+  margin-bottom: 10%;
+}
+
+.bannerText {
+  font-size: 38px;
+  font-weight: 500;
+  color: #2e0052;
+  width: 30%;
+  margin-top: 4%;
+  margin-left: 4%;
+}
+
+.logo {
+  margin-right: 0px;
+  margin-left: 500px;
+  display: flex;
+  align-items: center;
+  margin-top: 0px;
 }

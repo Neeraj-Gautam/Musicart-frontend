@@ -5,16 +5,20 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { Footer } from "../Footer/Footer";
 import { getProductsFromCart } from "../../apis/checkout";
+import { TitleBar } from "../TitleBar/TitleBar";
 
 export const Checkout = () => {
   const [cart, setCart] = useState(null);
+  const [userName, setUserName] = useState("");
   const [totalMrp, setTotalMrp] = useState(0);
   const navigate = useNavigate();
   const convenienceFee = 45;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
+    const userName = localStorage.getItem("userName");
+    if (token && userName) {
+      setUserName(userName);
       loadCart();
     } else {
       navigate("/login");
@@ -45,20 +49,27 @@ export const Checkout = () => {
     return 0;
   };
 
+  const viewCart = () => {
+    navigate("/mycart");
+  };
+
   return (
     <div>
       <div>
-        <Navbar />;
+        <Navbar />
+        <TitleBar
+          currentPage="Checkout"
+          showUserInfo={false}
+          cartDetails={cart}
+          showCartInfo={true}
+        />
       </div>
       <br />
       <br />
       <div>
-        <Link
-          to={`/mycart`}
-          style={{ color: "#FFF", backgroundColor: "var(--dark-pink)" }}
-        >
-          <button className={styles.button}>Back to cart</button>
-        </Link>
+        <button onClick={viewCart} className={styles.viewCart}>
+          Back to cart
+        </button>
       </div>
 
       <div className={styles.checkoutHeading}>
@@ -68,15 +79,15 @@ export const Checkout = () => {
       <div className={styles.calculateTotalPrice}>
         <div className={styles.checkoutInfo}>
           <div className={styles.deliveryAddress}>
-            <p className={styles.heading}>1. Delivery address</p>
+            <span className={styles.heading}>1. Delivery address</span>
             <div>
-              <p>Akash Patel</p>
+              <span>{userName}</span>
               <textarea>104 kk hh nagar, Lucknow Uttar Pradesh 226025</textarea>
             </div>
           </div>
 
           <div className={styles.paymentMethod}>
-            <p className={styles.heading}>2. Payment method</p>
+            <span className={styles.heading}>2. Payment method</span>
             <select>
               <option value="Mode of payment" disabled selected>
                 Mode of payment
@@ -88,7 +99,7 @@ export const Checkout = () => {
           </div>
 
           <div className={styles.paymentMethod}>
-            <p className={styles.heading}>3. Review items and delivery</p>
+            <span className={styles.heading}>3. Review items and delivery</span>
             {/* dummy data */}
             <select>
               <option value="Mode of payment" disabled selected>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 import styles from "./Products.module.css";
 import { getProducts } from "../../apis/products";
-import image0 from "../../assets/products/image9.png";
+import image0 from "../../assets/products/image6.png";
 import cartImage from "../../assets/icon/cartImage.png";
 import { colorOptions } from "../../utils/colorOptions";
 import { HeadphoneTypeOptions } from "../../utils/HeadphoneTypeOptions";
@@ -14,7 +15,7 @@ import listViewRounded from "../../assets/icon/list-view-rounded.png";
 import gridViewRounded from "../../assets/icon/grid-view-rounded.png";
 
 const Product = ({ cart, handleCartChange }) => {
-  const [gridView, setGridView] = useState(true);
+  const [gridView, setGridView] = useState(false);
   const [dataArray, setDataArray] = useState([]);
   const [color, setColor] = useState("");
   const [company, setCompany] = useState("");
@@ -24,6 +25,7 @@ const Product = ({ cart, handleCartChange }) => {
   const [sortType, setSortType] = useState("");
   const [search, setSearch] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -96,11 +98,24 @@ const Product = ({ cart, handleCartChange }) => {
     setSearch(value);
   };
 
+  const viewProduct = (productId) => {
+    navigate(`/item/${productId}`);
+  };
+
   const handleSorting = (event) => {
     const val = event.target.value;
     const sortOption = JSON.parse(val);
     setSortBy(sortOption.sortBy);
     setSortType(sortOption.sortType);
+  };
+
+  const formatNumberIndianStyle = (x) => {
+    x = x.toString();
+    let lastThree = x.substring(x.length - 3);
+    let otherNumbers = x.substring(0, x.length - 3);
+    if (otherNumbers != "") lastThree = "," + lastThree;
+    let res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+    return res;
   };
 
   return (
@@ -174,20 +189,19 @@ const Product = ({ cart, handleCartChange }) => {
           {dataArray.map((item, index) => (
             <div key={index} className={styles.gridItem}>
               <div className={styles.imageContainer}>
-                <Link
-                  to={`/item/${item.uuid}`}
-                  state={{ item: item }}
-                  style={{ color: "#FFF", backgroundColor: "var(--dark-pink)" }}
-                >
-                  <img src={image0} alt="" />
-                </Link>
+                <img
+                  src={image0}
+                  className={styles.productImage}
+                  onClick={() => viewProduct(item.uuid)}
+                />
                 {loggedIn && (
-                  <button
-                    className={styles.overlayButton}
-                    onClick={() => handleCartChange(item.uuid)}
-                  >
-                    <img src={cartImage} alt="Description of the image" />
-                  </button>
+                  <div>
+                    <img
+                      className={styles.overlayButton}
+                      src={cartImage}
+                      onClick={() => handleCartChange(item.uuid)}
+                    />
+                  </div>
                 )}
               </div>
               <div className={styles.container}>
@@ -195,7 +209,7 @@ const Product = ({ cart, handleCartChange }) => {
                   <div>
                     {item.brand} {item.modelName}
                   </div>
-                  <div>Price - ₹ {item.price}</div>
+                  <div>Price - ₹ {formatNumberIndianStyle(item.price)}</div>
                   <div>
                     {item.color} | {item.headPhoneType}
                   </div>
@@ -210,12 +224,37 @@ const Product = ({ cart, handleCartChange }) => {
         <div className={styles.listContainer}>
           {dataArray.map((item, index) => (
             <div className={styles.listItem}>
-              <img src={image0} alt="" />
+              <div className={styles.listItemImageContainer}>
+                <img className={styles.listMainImage} src={image0} alt="" />
+                {loggedIn && (
+                  <div>
+                    <img
+                      className={styles.bottomRightImage}
+                      src={cartImage}
+                      onClick={() => handleCartChange(item.uuid)}
+                    />
+                  </div>
+                )}
+              </div>
               <div classNane={styles.listItemInfo}>
-                <div>
-                  {item.brand} {item.modelName}
+                <div className={styles.heading}>
+                  <strong>
+                    {item.brand} {item.modelName}
+                  </strong>
                 </div>
-                <div>Price - ₹ {item.price}</div>
+                <div className={styles.info}>
+                  <p>Price - ₹ {formatNumberIndianStyle(item.price)}</p>
+                  <p>
+                    {item.color} | {item.headPhoneType}
+                  </p>
+                  <p>{item.fullName}</p>
+                </div>
+                <button
+                  className={styles.detailsButton}
+                  onClick={() => viewProduct(item.uuid)}
+                >
+                  Details
+                </button>
               </div>
             </div>
           ))}
@@ -224,22 +263,5 @@ const Product = ({ cart, handleCartChange }) => {
     </div>
   );
 };
-
-{
-  /* <div key={index} className={styles.listItem}>
-              <img src={image0} alt="" />
-              <div className={styles.container}>
-                <div className={styles.rowContainer}>
-                  <div>
-                    {item.brand} {item.modelName}
-                  </div>
-                  <div>Price - ₹ {item.price}</div>
-                  <div>
-                    {item.color} | {item.headPhoneType}
-                  </div>
-                </div>
-              </div>
-            </div> */
-}
 
 export default Product;

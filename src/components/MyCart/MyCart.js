@@ -7,12 +7,15 @@ import { getProductsFromCart } from "../../apis/checkout";
 import { addProductIncart } from "../../apis/cart";
 import { useNavigate } from "react-router";
 import { Footer } from "../Footer/Footer";
+import { TitleBar } from "../TitleBar/TitleBar";
+import image0 from "../../assets/products/image6.png";
+import { convenienceFee } from "../../utils/constants";
 
 export const MyCart = () => {
   const [cart, setCart] = useState(null);
+  const [numberOfProductInCart, setNumberOfProductInCart] = useState(0);
   const [totalMrp, setTotalMrp] = useState(0);
   const navigate = useNavigate();
-  const convenienceFee = 45;
   const maxQuantity = [];
 
   for (let i = 1; i <= 8; i++) {
@@ -39,10 +42,24 @@ export const MyCart = () => {
   const loadCart = async () => {
     try {
       const response = await getProductsFromCart();
-      console.log(response);
       setCart(response);
       setTotalMrp(calculateTotalMrp(response));
+      setNumberOfProductInCart(countProductsInCart(response));
     } catch (error) {}
+  };
+
+  const countProductsInCart = (cartData) => {
+    try {
+      if (cartData) {
+        let count = 0;
+        for (let i = 0; i < cartData.length; i++) {
+          count = count + cartData[i].quantity;
+        }
+
+        return count;
+      }
+    } catch (error) {}
+    return 0;
   };
 
   const calculateTotalMrp = (cart) => {
@@ -51,7 +68,7 @@ export const MyCart = () => {
       let mrp = 0;
       if (cart) {
         for (let i = 0; i < cart.length; i++) {
-          mrp = mrp + (cart[i].quantity * cart[i].product.price);
+          mrp = mrp + cart[i].quantity * cart[i].product.price;
         }
         return mrp;
       }
@@ -61,23 +78,31 @@ export const MyCart = () => {
   };
 
   const handlePlaceOrder = () => {
+    console.log("hi");
     navigate("/checkout");
-  }
+  };
+
+  const viewProducts = () => {
+    navigate("/home");
+  };
 
   return (
     <div className={styles.myCart}>
       <div>
         <Navbar />
+        <TitleBar
+          currentPage="View Cart"
+          showUserInfo={false}
+          cartDetails={cart}
+          showCartInfo={true}
+        />
       </div>
       <br />
       <br />
       <div>
-        <Link
-          to={`/home`}
-          style={{ color: "#FFF", backgroundColor: "var(--dark-pink)" }}
-        >
-          <button className={styles.button}>Back to products</button>
-        </Link>
+        <button onClick={viewProducts} className={styles.viewProducts}>
+          Back to products
+        </button>
       </div>
 
       <div>
@@ -86,22 +111,17 @@ export const MyCart = () => {
           <span>My Cart</span>
         </div>
       </div>
-
+      <hr />
       <div className={styles.calculateTotalPrice}>
         <div className={styles.scrollablediv}>
           {cart &&
             cart.map((item, index) => (
               <div>
                 <div className={styles.singleProduct}>
-                  {/* image */}
                   <div className={styles.itemImage}>
-                    <img
-                      src="https://img.freepik.com/free-photo/levitating-music-headphones-display_23-2149817607.jpg?size=626&ext=jpg"
-                      alt="img"
-                    />
+                    <img src={image0} />
                   </div>
 
-                  {/* modelname & color */}
                   <div>
                     <span className={styles.itemName}>
                       {item?.product.brand} {item?.product.modelName}
@@ -110,8 +130,6 @@ export const MyCart = () => {
                     <p> Colour : {item?.product.color}</p>
                     <p>In Stock</p>
                   </div>
-
-                  {/* price */}
                   <div className={styles.itemName}>
                     <p>Price</p>
                     <p>₹{item?.product.price}</p>
@@ -149,31 +167,50 @@ export const MyCart = () => {
         </div>
 
         <div className={styles.priceDetails}>
-          <h2>PRICE DETAILS</h2>
-          <table>
-            <tr>
-              <td>Total MRP</td>
-              <td>₹{totalMrp}</td>
-            </tr>
+          <div className={styles.priceInfo}>
+            <span>PRICE DETAILS</span>
+            <table>
+              <tr>
+                <td>Total MRP</td>
+                <td>₹{totalMrp}</td>
+              </tr>
 
-            <tr>
-              <td>Discount on MRP</td>
-              <td>₹0</td>
-            </tr>
+              <tr>
+                <td>Discount on MRP</td>
+                <td>₹0</td>
+              </tr>
 
-            <tr>
-              <td>Convenience Fee</td>
-              <td>₹{convenienceFee}</td>
-            </tr>
-            <tr></tr>
-          </table>
-
-          <span>Total Amount ₹ {totalMrp + convenienceFee}</span>
-          <br />
-          <button onClick={handlePlaceOrder}>PLACE ORDER</button>
+              <tr>
+                <td>Convenience Fee</td>
+                <td>₹{numberOfProductInCart > 0 ? convenienceFee : 0}</td>
+              </tr>
+            </table>
+          </div>
+          <div className={styles.finalAmount}>
+            <table>
+              <tr>
+                <td>
+                  <strong>Total Amount</strong>
+                </td>
+                <td>
+                  ₹{totalMrp + (numberOfProductInCart > 0 ? convenienceFee : 0)}
+                </td>
+              </tr>
+            </table>
+            <button
+              onClick={handlePlaceOrder}
+              disabled={numberOfProductInCart == 0}
+            >
+              PLACE ORDER
+            </button>
+          </div>
         </div>
       </div>
-
+      <hr />
+      <div className={styles.totalItem}>
+        <span>{numberOfProductInCart} Items</span>
+        <span>₹{totalMrp}</span>
+      </div>
       <div>
         <Footer />
       </div>

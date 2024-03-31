@@ -1,7 +1,19 @@
 .calculateTotalPrice {
   display: flex;
   width: 1300px;
-  margin-left: 60px;
+  margin-left: 6%;
+  justify-content: space-between;
+}
+.viewCart {
+  color: #ffffff;
+  background: #2e0052;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 5px 25px;
+  margin-left: 6%;
+}
+.checkoutInfo {
+  /* width: 100%; */
 }
 
 .checkoutHeading {
@@ -19,13 +31,12 @@
 
 .deliveryAddress {
   display: flex;
-  justify-content: space-around;
   font-weight: 500;
+  justify-content: space-between;
 }
 
 .paymentMethod {
   display: flex;
-  justify-content: space-around;
   font-weight: 500;
 }
 
@@ -46,7 +57,6 @@
   width: 300px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin-left: 840px;
 }
 
 .orderButton button {

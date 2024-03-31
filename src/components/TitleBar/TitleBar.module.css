@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   padding-top: 20px;
-  margin-top: 22px;
+  margin-top: 62px;
   margin-left: 6%;
   margin-right: 6%;
 }
@@ -10,7 +10,6 @@
 .titleBarLogo {
   display: flex;
   align-items: center;
-  width: 20px;
   height: 20px;
   gap: 11px;
 }
@@ -43,6 +42,14 @@
 .navLoginCart {
   display: flex;
   align-items: center;
+  width: 18%;
+}
+.viewCart {
+  width: 50%;
+}
+.viewcart span {
+  margin-left: 0px;
+  justify-content: center;
 }
 
 .navLoginCart button {
@@ -90,3 +97,27 @@
   border-radius: 11px;
   font-size: 14px;
 }
+
+.userProfile {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  appearance: none;
+  padding: 10px;
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+  outline: none;
+  margin-left: 20%;
+  margin-right: 20px;
+}
+
+.userProfile option {
+  font-weight: 500;
+  border-radius: 25px;
+}
+
+/* .pageName {
+  font-size: 2px;
+  width: 100%;
+} */

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import phone from "../../assets/icon/phone.png";
 import { logout, isUserLoggedIn } from "../../utils/UtilFunctions/util";
+import { useNavigate } from "react-router";
 
-const Navbar = () => {
+const Navbar = ({ showLogoutOption }) => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     setLoggedIn(isUserLoggedIn());
   }, []);
@@ -13,6 +15,16 @@ const Navbar = () => {
     logout();
     setLoggedIn(false);
     window.location.reload();
+  };
+
+  const handleLogIn = () => {
+    setLoggedIn(false);
+    navigate("/login");
+  };
+
+  const handleSignup = () => {
+    setLoggedIn(false);
+    navigate("/register");
   };
 
   return (
@@ -30,6 +42,12 @@ const Navbar = () => {
         {loggedIn && (
           <div className={styles.logout}>
             <p onClick={handleLogout}> Logout</p>
+          </div>
+        )}
+        {!loggedIn && (
+          <div className={styles.logout}>
+            <p onClick={handleLogIn}> Login |</p>
+            <p onClick={handleSignup}> &nbsp;Signup</p>
           </div>
         )}
       </div>

@@ -3,6 +3,7 @@ import Navbar from "../Navbar/Navbar";
 import styles from "./Invoice.module.css";
 import { Link } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
+import { MobileFooter } from "../Footer/MobileFooter";
 import { TitleBar } from "../TitleBar/TitleBar";
 import { getOrders } from "../../apis/invoice";
 import invoiceImage from "../../assets/icon/invoice.png";
@@ -24,6 +25,7 @@ export const Invoice = () => {
   return (
     <div>
       <Navbar />
+      <MobileFooter />
       <TitleBar />
       <div>
         <Link
@@ -42,9 +44,11 @@ export const Invoice = () => {
           {invoices.map((item, index) => (
             <div className={styles.invoices}>
               <div className={styles.userDetails}>
-                <div className={styles.invoiceImage}><img src={invoiceImage} /></div>
+                <div className={styles.invoiceImage}>
+                  <img src={invoiceImage} />
+                </div>
                 <div className={styles.userInfo}>
-                  <p className={styles.name}>{item.name}</p> 
+                  <p className={styles.name}>{item.name}</p>
                   <p className={styles.address}>{item.address}</p>
                 </div>
               </div>
@@ -57,6 +61,7 @@ export const Invoice = () => {
         </div>
       </div>
       <div className={styles.footer}>
+        {/* <MobileFooter /> */}
         <Footer />
       </div>
     </div>
