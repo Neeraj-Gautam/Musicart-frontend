@@ -30,7 +30,7 @@ export const Home = () => {
         cartDetails={cart}
         showCartInfo={true}
       />
-      <MobileSearchBar handleMobileSearch={handleMobileSearch}/>
+      <MobileSearchBar handleMobileSearch={handleMobileSearch} />
       <div className={styles.homePage}>
         <div className={styles.gradientBox}>
           <div className={styles.bannerText}>
@@ -42,7 +42,11 @@ export const Home = () => {
         </div>
         <br />
         <div>
-          <Product cart={cart} handleCartChange={addProduct} mobileSearch={mobileSearch} />
+          <Product
+            cart={cart}
+            handleCartChange={addProduct}
+            mobileSearch={mobileSearch}
+          />
         </div>
       </div>
       <div>

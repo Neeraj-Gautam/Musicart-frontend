@@ -120,20 +120,39 @@ td {
 }
 
 @media (max-width: 768px) {
-  .cartMobile {
-    display: block;
-  }
   .cartWide {
     display: none;
   }
-  .backToHome {
-    margin-top: 10%;
-    margin-left: 5%;
+
+  .mobileViewItems {
+    margin-top: 100px;
+    max-width: 90%;
+    margin-left: 20px;
+    background-color: #dbdbdb;
   }
 
-  .backToHome img {
-    padding: 4px;
-    border-radius: 50%;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
+  .mobileViewItem {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .mobileViewItemInfo {
+    margin-top: 10px;
+    margin-left: 150px !important;
+    position: absolute;
+  }
+  .mobileViewItemInfo p {
+    margin: 0px;
+    font-weight: 480;
+  }
+
+  .mobileViewItemImage {
+    padding: 10px;
+    display: inline-block;
+    max-width: 60%;
+  }
+  .mobileViewItemImage img {
+    width: 65%;
+    border-radius: 3.54px;
   }
 }

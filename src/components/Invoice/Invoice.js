@@ -6,6 +6,7 @@ import { Footer } from "../Footer/Footer";
 import { TitleBar } from "../TitleBar/TitleBar";
 import { getOrders } from "../../apis/invoice";
 import invoiceImage from "../../assets/icon/invoice.png";
+import invoiceImageHeader from "../../assets/icon/myInvoice.png";
 import MobileSearchBar from "../SearchBar/MobileSearchBar";
 import { useNavigate } from "react-router";
 
@@ -42,7 +43,8 @@ export const Invoice = () => {
       </div>
       <div className={styles.invoicePage}>
         <div className={styles.myInvoices}>
-          <span className={styles.heading}>My Invoices</span>
+          <img src={invoiceImageHeader} className={styles.headingImage} />
+          &nbsp;My Invoices
         </div>
 
         <div>

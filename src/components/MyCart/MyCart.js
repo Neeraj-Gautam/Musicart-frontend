@@ -11,6 +11,7 @@ import { TitleBar } from "../TitleBar/TitleBar";
 import image0 from "../../assets/products/image6.png";
 import backButton from "../../assets/icon/backButton.png";
 import { convenienceFee } from "../../utils/constants";
+import MobileSearchBar from "../SearchBar/MobileSearchBar";
 
 export const MyCart = () => {
   const [cart, setCart] = useState(null);
@@ -18,6 +19,7 @@ export const MyCart = () => {
   const [totalMrp, setTotalMrp] = useState(0);
   const navigate = useNavigate();
   const maxQuantity = [];
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   for (let i = 1; i <= 8; i++) {
     maxQuantity.push(i);
@@ -25,11 +27,18 @@ export const MyCart = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
     if (token) {
       loadCart();
     } else {
       navigate("/login");
     }
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const addProduct = async (event, productId) => {
@@ -122,7 +131,6 @@ export const MyCart = () => {
                     <div className={styles.itemImage}>
                       <img src={image0} />
                     </div>
-
                     <div>
                       <span className={styles.itemName}>
                         {item?.product.brand} {item?.product.modelName}
@@ -136,7 +144,6 @@ export const MyCart = () => {
                       <p>₹{item?.product.price}</p>
                     </div>
 
-                    {/* Quantity */}
                     <div>
                       <p className={styles.itemName}>Quantity</p>
 
@@ -214,15 +221,41 @@ export const MyCart = () => {
           <span>{numberOfProductInCart} Items</span>
           <span>₹{totalMrp}</span>
         </div>
-      </div>
-      <div className={styles.cartMobile}>
-        <div className={styles.backToHome}>
-          <img src={backButton} onClick={viewProducts} />
-        </div>
-      </div>
-      <div>
+
         <Footer />
       </div>
+
+      {viewportWidth < 768 ? (
+        <div>
+          <MobileSearchBar />
+          <div>
+            <div className={styles.mobileViewItems}>
+              {cart &&
+                cart.map((item, index) => (
+                  <div className={styles.mobileViewItem}>
+                    <div className={styles.mobileViewItemImage}>
+                      <img src={image0} />
+                    </div>
+                    <div className={styles.mobileViewItemInfo}>
+                      <p style={{ "font-size": "16px" }}>
+                        {item?.product.brand} {item?.product.modelName}
+                      </p>
+                      <p style={{ "font-size": "18px" }}>
+                        <strong>₹{item?.product.price} </strong>
+                      </p>
+                      <p style={{ "font-size": "14px" }}>
+                        Colour : {item?.product.color}
+                      </p>
+                      <p style={{ "font-size": "13px" }}> In Stock</p>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
