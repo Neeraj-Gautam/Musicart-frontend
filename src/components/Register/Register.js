@@ -128,11 +128,13 @@ const Register = () => {
           </p>
         </div>
       </div>
-      <p className={styles.signUp}>
+      <br />
+      <div className={styles.signUp}>
         <strong>
-          Already have an account? <u onclick={redirectToLoginPage}>Sign in</u>
+          Already have an account? &nbsp;&nbsp;
+          <u onClick={redirectToLoginPage}>Sign in</u>
         </strong>
-      </p>
+      </div>
       <br />
       <div>
         <Footer />

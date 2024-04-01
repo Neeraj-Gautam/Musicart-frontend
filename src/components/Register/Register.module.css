@@ -58,6 +58,12 @@
   align-items: center;
 }
 
+.signUp u:hover {
+cursor: pointer;
+}
+
+
+
 @media (max-width: 768px) {
   .registerForm {
     width: 85%;
