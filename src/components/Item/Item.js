@@ -13,6 +13,7 @@ import { ItemInfo } from "../Item/ItemInfo";
 import MobileSearchBar from "../SearchBar/MobileSearchBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import backButton from "../../assets/icon/backButton.png";
 
 export const Item = () => {
   const [cart, setCart] = useState(null);
@@ -65,6 +66,10 @@ export const Item = () => {
 
   const handleViewcart = () => {
     navigate("/mycart");
+  };
+
+  const viewHomePage = () => {
+    navigate("/home");
   };
 
   const handleClick = (image) => {
@@ -129,6 +134,9 @@ export const Item = () => {
       ) : (
         <div>
           <MobileSearchBar />
+          <div className={styles.viewHomePageButton}>
+            <img src={backButton} onClick={viewHomePage} />
+          </div>
           <div className={styles.mainMobileElement}>
             <div className={styles.carousel}>
               <Carousel images={sideImages} />

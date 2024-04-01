@@ -27,14 +27,14 @@ export const MyCart = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const handleResize = () => {
-      setViewportWidth(window.innerWidth);
-    };
     if (token) {
       loadCart();
     } else {
       navigate("/login");
     }
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -292,7 +292,11 @@ export const MyCart = () => {
               PLACE ORDER
             </button>
           </div>
-          <Footer currentPage="mycart" />
+          <Footer
+            showNoOfItems={true}
+            noOfItems={numberOfProductInCart}
+            currentPage="mycart"
+          />
         </div>
       ) : (
         <></>

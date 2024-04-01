@@ -60,3 +60,15 @@
   max-height: 10%;
   padding-top: 2px;
 }
+
+@media (max-width: 768px) {
+  .musicartLogo {
+    width: 1000px;
+  }
+
+  .content {
+    height: 600px;
+    width: 500px;
+    margin-left: 20px;
+  }
+}

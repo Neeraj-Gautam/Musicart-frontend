@@ -211,3 +211,10 @@ button:hover {
 .viewCart:hover {
   background-color: #4c0e7b;
 }
+
+@media (max-width: 768px) {
+  .bottomBar {
+    width: 1000px;
+    height: 100px;
+  }
+}

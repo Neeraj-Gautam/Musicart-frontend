@@ -220,7 +220,7 @@ export const Checkout = () => {
           Place your order
         </button>
         <div className={styles.bottomBarText}>
-          <span className={styles.orderTotal}>Order Total : ₹3545.00</span>
+          <span className={styles.orderTotal}>Order Total : ₹{formatNumberIndianStyle(totalMrp + CONVENIENCE_FEE)}</span>
           <span>
             By placing your order, you agree to Musicart privacy notice and
             conditions of use.

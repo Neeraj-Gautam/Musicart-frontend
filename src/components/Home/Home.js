@@ -14,6 +14,23 @@ import "react-toastify/dist/ReactToastify.css";
 export const Home = () => {
   const [cart, setCart] = useState(null);
   const [mobileSearch, setMobileSearch] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
 
   const addProduct = async (productId) => {
     const response = await addProductIncart(productId);
@@ -58,7 +75,7 @@ export const Home = () => {
           />
         </div>
       </div>
-      <Feedback />
+      {viewportWidth > 768 && isLoggedIn && <Feedback />}
       <div>
         <Footer />
       </div>
