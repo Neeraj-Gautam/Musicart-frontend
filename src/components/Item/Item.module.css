@@ -32,6 +32,14 @@
   display: flex;
   justify-content: flex-start;
   margin-top: 3%;
+  min-width: 50%;
+}
+
+.mainContent img {
+  min-width: 47%;
+  border: 5px solid #000000;
+  border-radius: 18px;
+  padding: 20px;
 }
 
 .info {
@@ -54,14 +62,14 @@
 }
 
 .smallPics img {
-  border: 2px solid #000000;
+  border: 5px solid #000000;
   margin-right: 10px;
   border-radius: 10px;
   width: 206px;
   height: 150px;
 }
 
-.buttons {
+.cartButtons {
   display: flex;
   flex-direction: column;
   padding: 2px;
@@ -77,7 +85,9 @@
   text-align: center;
   cursor: pointer;
 }
-
+.sideViewImages {
+  cursor: pointer;
+}
 .addToCart:active {
   border: 2px #110ebe solid;
   transform: scale(1);
@@ -109,34 +119,29 @@
 }
 
 @media (max-width: 768px) {
-  .registerForm {
-    width: 85%;
-    padding: 20px;
-    box-sizing: border-box;
+  .mainMobileElement {
+    margin: 30% 5% 5% 5%;
+  }
+  .carousel {
+    border: 3px solid #000000;
+    border-radius: 8px;
+    padding: 30px;
+  }
+
+  .mobileButtons {
+    display: flex;
     flex-direction: column;
-    border: 2px solid;
-    border-radius: 5px;
-    border-color: #d0d0d0;
+    margin: 10px 0px 70px 10px;
   }
 
-  .h1 {
-    font-weight: 500;
+  .mobileButtons button {
+    display: flex;
+    flex-direction: column;
+    width: 310px;
+    padding: 2px 10px;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
     font-size: 15px;
-    font-family: "Roboto", sans-serif;
-  }
-
-  .h1 span {
-    color: #000000;
-    font-weight: 100;
-    font-size: 13px;
-    font-family: "Roboto", sans-serif;
-  }
-
-  .input {
-    width: 92%;
-  }
-
-  .signUp {
-    margin-top: 10%;
   }
 }

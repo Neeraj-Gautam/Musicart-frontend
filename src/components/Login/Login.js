@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
-import musiCartLogo from "../../assets/icon/musiCartLogo.png";
 import line from "../../assets/icon/Line.png";
 import { useNavigate } from "react-router";
 import { loginUser } from "../../apis/auth";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -29,19 +30,28 @@ export const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!data || !data.userIdentifier || !data.password) {
+      toast.error("Please fill all the fields");
+      return;
+    }
     const response = await loginUser({ ...data });
 
-    if (response) {
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("userName", response.name);
-      navigate("/home", { state: { user: response } });
+    if (response && (response.status == 200 || response.status == 201)) {
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userName", response.data.name);
+      navigate("/home", { state: { user: response.data } });
+      return;
+    }
+
+    if (response && response.data) {
+      toast.error(response.data.message);
     }
   };
 
   const alreadyLoggedIn = () => {
     const token = localStorage.getItem("token");
     const userName = localStorage.getItem("userName");
-    console.log("token", userName);
     if (token && userName) {
       navigate("/home");
     }
@@ -49,6 +59,7 @@ export const Login = () => {
 
   return (
     <div>
+      <ToastContainer />
       <Header />
       <div className={styles.container}>
         <div className={styles.loginForm}>

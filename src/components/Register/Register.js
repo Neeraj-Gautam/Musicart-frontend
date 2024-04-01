@@ -5,6 +5,8 @@ import { useNavigate } from "react-router";
 import { registerUser } from "../../apis/auth";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -36,14 +38,18 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!data.name || !data.mobile || !data.email || !data.password) {
-      alert("Please fill in all fields.");
+      toast.error("Please fill in all fields.");
       return;
     }
     const response = await registerUser({ ...data });
-    if (response) {
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("userName", response.name);
+    if (response && (response.status == 200 || response.status == 201)) {
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userName", response.data.name);
       navigate("/");
+      return;
+    }
+    if (response && response.data) {
+      toast.error(response.data.message);
     }
   };
 
@@ -60,6 +66,7 @@ const Register = () => {
 
   return (
     <div>
+      <ToastContainer />
       <Header />
       <div className={styles.container}>
         <div className={styles.registerForm}>

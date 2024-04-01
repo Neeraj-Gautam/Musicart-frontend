@@ -4,17 +4,25 @@ import styles from "./Home.module.css";
 import bannerImage from "../../assets/icon/bannerImage.png";
 import Product from "../Products/Product";
 import { Footer } from "../Footer/Footer";
+import { Feedback } from "../Feedback/Feedback";
 import { addProductIncart } from "../../apis/cart";
 import { TitleBar } from "../TitleBar/TitleBar";
 import MobileSearchBar from "../SearchBar/MobileSearchBar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Home = () => {
   const [cart, setCart] = useState(null);
   const [mobileSearch, setMobileSearch] = useState("");
 
   const addProduct = async (productId) => {
-    const cartData = await addProductIncart(productId);
-    setCart(cartData);
+    const response = await addProductIncart(productId);
+    if (response.status == 204) {
+      toast.error("Maximum quantity (8) reached for this product");
+      return;
+    }
+    toast.success("Product added successfully in cart!!");
+    setCart(response.data);
   };
 
   const handleMobileSearch = (newValue) => {
@@ -23,6 +31,7 @@ export const Home = () => {
 
   return (
     <div>
+      <ToastContainer />
       <Navbar showLogoutOption={false} />{" "}
       <TitleBar
         currentPage="home"
@@ -49,6 +58,7 @@ export const Home = () => {
           />
         </div>
       </div>
+      <Feedback />
       <div>
         <Footer />
       </div>

@@ -99,22 +99,27 @@
 }
 
 .userProfile {
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   appearance: none;
   padding: 10px;
   font-size: 14px;
   background-color: #fff;
-  border: 1px solid #dddddd;
+  border: 1px solid #2e0052;
   outline: none;
   margin-left: 20%;
   margin-right: 20px;
+  cursor: pointer;
 }
 
 .userProfile option {
   font-weight: 500;
   border-radius: 25px;
+  background-color: #ffffff;
+}
+.userProfileOption {
+  min-width: 500px;
 }
 
 @media (max-width: 768px) {

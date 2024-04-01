@@ -1,0 +1,84 @@
+.mainContainer {
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  flex-direction: column;
+  top: 10%;
+  left: 85.5%;
+  margin-bottom: 20px;
+}
+
+.feedbackBar {
+  background-color: #ffffff;
+  position: fixed;
+  top: 35%;
+  left: 80%;
+}
+
+.feedbackBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 252px;
+  height: 248px;
+  border: 2px solid #0000005e;
+  border-radius: 22px;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.feedbackTextArea {
+  display: flex;
+  flex-direction: column;
+  margin-left: -40px;
+  margin-right: -39px;
+  width: 215px;
+  font-weight: 500;
+  height: 120px;
+}
+
+.feedbackTextArea textarea {
+  border-radius: 10px;
+  padding-bottom: 39px;
+  background-color: #f3f3f3;
+}
+
+.feedbackSelect select {
+  width: 208px;
+  margin-bottom: 48px;
+  border-radius: 6px;
+  border-color: #919191;
+  height: 32px;
+  background-color: #f3f3f3;
+}
+.feedbackSelect {
+  margin-left: 20px;
+  margin-top: 25px;
+  margin-bottom: -35px;
+  font-weight: 500;
+}
+
+.feedbackBox button {
+  width: 90px;
+  background-color: #2e0052;
+  color: #ffffff;
+  border-radius: 26px;
+  padding: 5px;
+}
+.feedbackBox.open {
+  transform: translateX(-50%) translateY(-100%);
+}
+
+.feedbackIcon {
+  width: 5%;
+  border-radius: 50%;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.feedbackIcon img {
+  width: 50px;
+  padding: 10px;
+  margin-left: 5px;
+}

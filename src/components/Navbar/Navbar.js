@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import phone from "../../assets/icon/phone.png";
-import { logout, isUserLoggedIn } from "../../utils/UtilFunctions/util";
+import { logout } from "../../utils/UtilFunctions/util";
+import { TOKEN } from "../../utils/constants";
 import { useNavigate } from "react-router";
 
 const Navbar = ({ showLogoutOption }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    setLoggedIn(isUserLoggedIn());
+    const token = localStorage.getItem(TOKEN);
+    if (token) {
+      setLoggedIn(true);
+    }
   }, []);
 
   const handleLogout = () => {

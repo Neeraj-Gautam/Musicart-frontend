@@ -7,6 +7,7 @@ import { ItemPage } from "./pages/ItemPage/ItemPage";
 import { MyCartPage } from "./pages/MyCartPage/MyCartPage";
 import { CheckoutPage } from "./pages/CheckoutPage/CheckoutPage";
 import { SuccessfulPage } from "./pages/SuccessfulPage/SuccessfulPage";
+import { MyInvoicesPage } from "./pages/MyInvoicesPage/MyInvoicesPage";
 import { InvoicePage } from "./pages/InvoicePage/InvoicePage";
 import { OrderPlacedPage } from "./pages/OrderPlacedPage/OrderPlacedPage";
 
@@ -30,8 +31,9 @@ function App() {
         <Route path="/mycart" element={<MyCartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/successful" element={<SuccessfulPage />} />
-        <Route path="/invoice" element={<InvoicePage />} />
+        <Route path="/myInvoices" element={<MyInvoicesPage />} />
         <Route path="/orderplaced" element={<OrderPlacedPage />} />
+        <Route path="/invoice/:orderId" element={<InvoicePage />} />
       </Routes>
     </BrowserRouter>
   );

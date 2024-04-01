@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./TitleBar.module.css";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import musiCartLogo from "../../assets/icon/musiCartLogo.png";
-import bannerImage from "../../assets/icon/bannerImage.png";
 import shoppingCart from "../../assets/icon/shoppingCart.png";
 import viewCart from "../../assets/icon/viewCart.png";
-import Product from "../Products/Product";
-import { Footer } from "../Footer/Footer";
-import { useParams, useLocation } from "react-router-dom";
-import { addProductIncart, getCart } from "../../apis/cart";
+import { getCart } from "../../apis/cart";
 import { TOKEN, USERNAME } from "../../utils/constants";
+import { logout } from "../../utils/UtilFunctions/util";
 
 export const TitleBar = ({
   showUserInfo,
@@ -26,7 +22,6 @@ export const TitleBar = ({
   const [initials, setInitials] = useState("");
 
   useEffect(() => {
-    console.log("run...");
     const token = localStorage.getItem(TOKEN);
     const userName = localStorage.getItem(USERNAME);
     if (token) {
@@ -39,7 +34,6 @@ export const TitleBar = ({
 
   const loadcart = async () => {
     const cartData = await getCart();
-    console.log(cartData);
     setCart(cartData);
     setNumberOfProductInCart(countProductsInCart(cartData));
   };
@@ -48,10 +42,10 @@ export const TitleBar = ({
     navigate("/mycart");
   };
 
-  const handleChange = () => {
-    localStorage.removeItem(TOKEN);
-    localStorage.removeItem(USERNAME);
-    window.location.reload();
+  const handleChange = (event) => {
+    if (event.target.value === "logout") {
+      logout();
+    }
   };
 
   const handleClick = (page) => {
@@ -65,14 +59,12 @@ export const TitleBar = ({
       for (let i = 0; i < words.length && initials.length < 2; i++) {
         initials += words[i].charAt(0).toUpperCase();
       }
-      console.log(initials);
       return initials;
     }
   };
 
   const countProductsInCart = (cartData) => {
     try {
-      console.log(cartData);
       if (cartData && cartData.products) {
         let count = 0;
         for (let i = 0; i < cartData.products.length; i++) {
@@ -103,7 +95,7 @@ export const TitleBar = ({
               {isLoggedIn && (
                 <span
                   onClick={() => {
-                    handleClick("invoice");
+                    handleClick("myInvoices");
                   }}
                 >
                   Invoice
@@ -132,8 +124,24 @@ export const TitleBar = ({
             </div>
             {showUserInfo && (
               <select className={styles.userProfile} onChange={handleChange}>
-                <option value="name">{userName}</option>
-                <option value="logout"> Logout </option>
+                <option
+                  value="name"
+                  className={styles.userProfileHiddenOption}
+                  hidden
+                >
+                  <span>{getInitials(userName)}</span>
+                </option>
+                <option
+                  value="name"
+                  className={styles.userProfileOption}
+                  disabled
+                >
+                  &nbsp;{userName}&nbsp;
+                </option>
+                <option className={styles.userProfileOption} value="logout">
+                  {" "}
+                  &nbsp;Logout &nbsp;
+                </option>
               </select>
             )}
           </div>

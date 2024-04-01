@@ -5,11 +5,14 @@ import styles from "./Item.module.css";
 import { getProduct } from "../../apis/products";
 import { Footer } from "../Footer/Footer";
 import { useParams, useLocation } from "react-router-dom";
-import image from "../../assets/products/Group 22.png";
-import Star from "../Star";
 import { addProductIncart } from "../../apis/cart";
 import { useNavigate } from "react-router";
 import { TitleBar } from "../TitleBar/TitleBar";
+import Carousel from "../Carousel/Carousel";
+import { ItemInfo } from "../Item/ItemInfo";
+import MobileSearchBar from "../SearchBar/MobileSearchBar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Item = () => {
   const [cart, setCart] = useState(null);
@@ -18,9 +21,8 @@ export const Item = () => {
   const navigate = useNavigate();
   const [pageName, setPageName] = useState("");
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-
-  const imageSrc =
-    "https://ih1.redbubble.net/image.4647705481.2735/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg";
+  const [mainImage, setMainImage] = useState(null);
+  const [sideImages, setSideImages] = useState([]);
 
   useEffect(() => {
     loadData();
@@ -40,6 +42,8 @@ export const Item = () => {
       if (response && response.brand && response.modelName) {
         setPageName(response.brand + " " + response.modelName);
       }
+      setMainImage(response.imageUrl);
+      setSideImages(response.sideViewImages);
     } catch (error) {}
   };
 
@@ -49,16 +53,27 @@ export const Item = () => {
       navigate("/login");
       return;
     }
-    const cartData = await addProductIncart(productId);
-    setCart(cartData);
+    const response = await addProductIncart(productId);
+
+    if (response.status == 204) {
+      toast.error("Maximum quantity (8) reached for this product");
+      return;
+    }
+    toast.success("Product added successfully in cart!!");
+    setCart(response.data);
   };
 
   const handleViewcart = () => {
     navigate("/mycart");
   };
 
+  const handleClick = (image) => {
+    setMainImage(image);
+  };
+
   return (
     <div>
+      <ToastContainer />
       {viewportWidth > 768 ? (
         <div>
           <div>
@@ -78,115 +93,64 @@ export const Item = () => {
             <div className={styles.fullName}>{item?.fullName}</div>
 
             <div className={styles.mainContent}>
-              <img className={styles.image} src={image} alt="headphone image" />
-
-              <div className={styles.info}>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <div style={{ fontWeight: "bold" }}>
-                    {item?.brand} {item?.modelName}
-                  </div>
-                  <Star stars={item?.stars} />
-                  <div style={{ fontWeight: "bold" }}>
-                    Price - ₹ {item?.price}
-                  </div>
-                  <div style={{ fontWeight: "bold" }}>
-                    {item?.color} | {item?.headPhoneType}
-                  </div>
-                  <br />
-                  About this item
-                  <ul>
-                    {item?.about.map((aboutItem, index) => (
-                      <li key={index}>{aboutItem}</li>
-                    ))}
-                  </ul>
-                  <div>
-                    <p>
-                      <span>
-                        <strong>Available</strong>
-                      </span>{" "}
-                      - In stock
-                    </p>
-                    <p>
-                      <span>
-                        <strong>Brand</strong>
-                      </span>
-                      -{item?.brand}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <img src={mainImage} alt="headphone image" />
+              <ItemInfo item={item} />
             </div>
 
             <div className={styles.smallPicsContainer}>
               <div className={styles.smallPics}>
-                <img src={image} />
-                <img src={image} />
-                <img src={image} />
+                {item?.sideViewImages.map((sideViewImage, index) => (
+                  <img
+                    src={sideViewImage}
+                    className={styles.sideViewImages}
+                    onClick={() => {
+                      handleClick(sideViewImage);
+                    }}
+                  />
+                ))}
               </div>
 
-              <div className={styles.buttons}>
+              <div className={styles.cartButtons}>
                 <button
                   className={styles.addToCart}
                   onClick={() => addProduct(item.productId)}
                 >
                   Add to cart
                 </button>
-                <button className={styles.buyNow} onClick={handleViewcart}>Buy Now</button>
+                <button className={styles.buyNow} onClick={handleViewcart}>
+                  Buy Now
+                </button>
               </div>
             </div>
           </div>
           <br />
           <br />
-          <div>
-            <Footer />
-          </div>{" "}
         </div>
       ) : (
-        <div> </div>
+        <div>
+          <MobileSearchBar />
+          <div className={styles.mainMobileElement}>
+            <div className={styles.carousel}>
+              <Carousel images={sideImages} />
+            </div>
+            <ItemInfo item={item} />
+            <div className={styles.mobileButtons}>
+              <button
+                className={styles.addToCart}
+                onClick={() => addProduct(item.productId)}
+              >
+                Add to cart
+              </button>
+              <button className={styles.buyNow} onClick={handleViewcart}>
+                Buy Now
+              </button>
+            </div>
+          </div>
+        </div>
       )}
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };
-
-// return (
-//   <div>
-//     <Navbar />
-
-//     <button className={styles.button}>Back to products</button>
-
-//     <div className={styles.fullName}>{item?.fullName}</div>
-
-//     <div className={styles.mainContent}>
-//       <img
-//         className={styles.image}
-//         src="https://ih1.redbubble.net/image.4647705481.2735/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
-//         alt="headphone image"
-//       />
-
-//       <div className={styles.productDetails}>
-//         <h2>{item?.brand} {item?.modelName}</h2>
-//         <p>{item?.stars}</p>
-//         <p>Price - ₹ {item?.price}</p>
-//         <p>{item?.brand} | {item?.headPhoneType}</p>
-
-//         <div>
-//           <h3>About this item</h3>
-//           <ul>
-//             <li>Sony’s lightest Wireless Noise-cancelling headband ever</li>
-//             <li>Up to 50-hour battery life with quick charging (3 min charge for up to 1 hour of playback)</li>
-//             <li>Multi-Point Connection helps to pair with two Bluetooth devices at the same time</li>
-//             <li>Take noise cancelling to the next level with Sony’s Integrated Processor V1, so you can fully immerse yourself in the music</li>
-//             <li>Super comfortable and lightweight design (192 Grams)</li>
-//             <li>High sound quality and well-balanced sound tuning</li>
-//           </ul>
-//           <p><span className={styles.boldText}>Available</span> - In stock</p>
-//           <p><span className={styles.boldText}>Brand</span> - {item?.brand}</p>
-//         </div>
-//       </div>
-//     </div>
-
-//     <Footer />
-//   </div>
-// );
-
-/* {item?.modelName} */

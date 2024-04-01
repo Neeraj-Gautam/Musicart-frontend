@@ -1,107 +1,210 @@
-.button {
+.calculateTotalPrice {
+  display: flex;
+  width: 1300px;
   margin-left: 6%;
-  margin-top: 2%;
+  justify-content: space-between;
+}
+.viewCart {
   color: #ffffff;
   background: #2e0052;
   border-radius: 8px;
-  padding: 0.3%;
-  padding-right: 2%;
-  padding-left: 1%;
+  cursor: pointer;
+  padding: 5px 25px;
+  margin-left: 6%;
+}
+.checkoutInfo {
+  width: 100%;
+}
+
+.checkoutHeading {
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  text-decoration: underline;
+}
+
+.button {
+  color: #ffffff;
+  background: #2e0052;
+  border-radius: 14px;
   cursor: pointer;
 }
 
-.invoicePage {
-  min-height: 60vh;
+.deliveryAddress {
+  display: flex;
+  font-weight: 500;
+  justify-content: flex-start;
 }
 
-.myInvoices {
+.deliveryAddressInput {
   display: flex;
-  justify-content: center;
-  margin-top: 2%;
-  color: #000000;
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.invoices {
-  margin-left: 6%;
-  margin-right: 6%;
-  margin-bottom: 1%;
-  border-bottom: 2px solid #e1e1e1;
-  display: flex;
-  justify-content: space-between;
-}
-.userDetails {
-  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  justify-content: space-around;
+  margin-left: 40%;
   color: #797979;
 }
+.deliveryAddressInput textarea {
+  width: 380px;
+  background-color: #ffffff;
+  margin-top: 2px;
+}
 
-.invoiceImage {
+.paymentMethod {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  font-weight: 500;
+  justify-content: flex-start;
+  margin-top: 20px;
 }
 
-.invoices img {
-  width: 50px;
-  height: 50px;
+.paymentMethod select {
+  margin-left: 39%;
+  border: 1px solid #919191;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: #f3f3f3;
+  width: 390px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-.invoiceLink {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+.invoiceCard {
+  border: 4px solid #e1e1e1;
+  padding: 20px;
+  border-radius: 4px;
+  width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-right: -70px;
+  max-height: 200px;
 }
 
-.invoiceLink button {
-  width: 120px;
-  height: 30px;
-  background-color: #2e0052;
-  border-radius: 9px;
-  color: #ffffff;
-  padding: 0.5%;
+hr {
+  width: 90%;
+}
+.Order span {
+  font-size: 18px;
+}
+
+.Order p {
+  font-size: 12px;
+}
+
+.Order button {
+  background-color: #ffd600;
+  border: none;
+  width: 310px;
+  height: 35px;
+  border-radius: 11px;
+}
+.invoiceItem p {
+  text-align: start;
+}
+
+.orderValues {
+  margin-left: 150px;
+}
+
+.orderValuesTotal {
+  margin-left: 100px;
+}
+
+.invoiceItem {
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-left: 310px;
+}
+
+.imageContainer img {
   cursor: pointer;
 }
-.headingImage {
-  display: none;
+
+.productInfo {
+  margin-left: 320px;
 }
 
-.userInfo {
-  margin-left: 3%;
-  margin-bottom: 3%;
-}
-.userInfo p {
-  max-width: 40%;
-  margin-top: 0px;
-  margin-bottom: 0px;
+.productImage {
+  width: 120px;
+  border: 1px solid #000000;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
-.address {
-  font-size: 13px;
+.review {
+  display: flex;
+  margin-top: 20px;
+}
+
+/* .invoiceTotal {
+    border-top: 1px solid #ddd;
+  } */
+
+/* .itemLabel,
+  .totalLabel {
+    font-weight: bold;
+  } */
+
+.itemCost,
+.totalCost {
+  font-weight: bold;
+  color: #333;
+}
+
+.bottomBar {
+  display: flex;
+  border: 4px solid #e1e1e1;
+  border-radius: 16px;
+  object-fit: contain;
+  width: 65%;
+  height: 50px;
+  align-items: center;
+  padding: 0px 0px 0px 5px;
+  margin: 0 0 2.8% 4%;
+}
+.placeYourOrder {
+  background-color: #ffd600;
+  object-fit: contain;
+  text-align: center;
   font-weight: 400;
+  border-radius: 8px;
+  border: none;
+  width: 233px;
+  height: 32px;
+  margin: 0px 0px 0px 10px;
+}
+
+.orderTotal {
+  color: #b52b00;
+  font-weight: 600;
+}
+
+.bottomBarText span {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.heading {
+  color: #b52b00;
+  font-size: 22px;
+  font-weight: 500;
+}
+td {
+  margin-left: 0px;
 }
 
 @media (max-width: 768px) {
-  .myInvoices {
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-  .invoicePage {
-    margin-top: 100px;
-  }
-  .headingImage {
-    display: flex;
-    width: 5%;
-    height: 5%;
-  }
-  .userInfo p {
-    max-width: 90%;
-    margin-bottom: 2px;
-  }
-
-  .invoiceLink button {
-    width: 105px;
-    border-radius: 30px;
-  }
+  /* .invoiceCard {
+    margin-top: 400px;
+    margin-left: 10px;
+  } */
 }

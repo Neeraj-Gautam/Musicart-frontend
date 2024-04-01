@@ -75,7 +75,6 @@
   top: 91.5%;
   left: 91.5%;
   transform: translate(-50%, -50%);
-  z-index: 1;
   background-color: none;
   cursor: pointer;
 }
@@ -108,7 +107,6 @@
   top: 91.5%;
   left: 91.5%;
   transform: translate(-50%, -50%);
-  z-index: 1;
   background-color: none;
   cursor: pointer;
 }

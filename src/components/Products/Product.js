@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import styles from "./Products.module.css";
 import { getProducts } from "../../apis/products";
-import image0 from "../../assets/products/image6.png";
 import cartImage from "../../assets/icon/cartImage.png";
 import { colorOptions } from "../../utils/colorOptions";
 import { HeadphoneTypeOptions } from "../../utils/HeadphoneTypeOptions";
@@ -13,10 +11,10 @@ import { SortOptions } from "../../utils/SortOptions";
 import SearchBar from "../SearchBar/SearchBar";
 import listViewRounded from "../../assets/icon/list-view-rounded.png";
 import gridViewRounded from "../../assets/icon/grid-view-rounded.png";
-import {formatNumberIndianStyle} from "../../utils/UtilFunctions/util"
+import { formatNumberIndianStyle } from "../../utils/UtilFunctions/util";
 
 const Product = ({ cart, handleCartChange, mobileSearch }) => {
-  const [gridView, setGridView] = useState(false);
+  const [gridView, setGridView] = useState(true);
   const [dataArray, setDataArray] = useState([]);
   const [color, setColor] = useState("");
   const [company, setCompany] = useState("");
@@ -35,7 +33,10 @@ const Product = ({ cart, handleCartChange, mobileSearch }) => {
       setLoggedIn(true);
     }
     loadData();
-    setSearch(mobileSearch);
+    if (mobileSearch) {
+      setSearch(mobileSearch);
+    }
+
     const handleResize = () => {
       setViewportWidth(window.innerWidth);
     };
@@ -82,9 +83,9 @@ const Product = ({ cart, handleCartChange, mobileSearch }) => {
       params += "search=" + search + "&";
     }
 
-    console.log(params);
+    console.log("params", params);
+
     const response = await getProducts(params);
-    console.log(response);
     setDataArray(response);
   };
 
@@ -113,7 +114,6 @@ const Product = ({ cart, handleCartChange, mobileSearch }) => {
   };
 
   const handleSearch = (value) => {
-    console.log(value);
     setSearch(value);
   };
 
@@ -127,7 +127,6 @@ const Product = ({ cart, handleCartChange, mobileSearch }) => {
     setSortBy(sortOption.sortBy);
     setSortType(sortOption.sortType);
   };
-
 
   return (
     <div>
@@ -203,7 +202,7 @@ const Product = ({ cart, handleCartChange, mobileSearch }) => {
                 <div key={index} className={styles.gridItem}>
                   <div className={styles.imageContainer}>
                     <img
-                      src={image0}
+                      src={item.imageUrl}
                       className={styles.productImage}
                       onClick={() => viewProduct(item.productId)}
                     />
@@ -238,7 +237,11 @@ const Product = ({ cart, handleCartChange, mobileSearch }) => {
               {dataArray.map((item, index) => (
                 <div className={styles.listItem}>
                   <div className={styles.listItemImageContainer}>
-                    <img className={styles.listMainImage} src={image0} alt="" />
+                    <img
+                      className={styles.listMainImage}
+                      src={item.imageUrl}
+                      alt=""
+                    />
                     {loggedIn && (
                       <div>
                         <img
@@ -335,7 +338,7 @@ const Product = ({ cart, handleCartChange, mobileSearch }) => {
                 <div key={index} className={styles.gridItem}>
                   <div className={styles.imageContainer}>
                     <img
-                      src={image0}
+                      src={item.imageUrl}
                       className={styles.productImage}
                       onClick={() => viewProduct(item.productId)}
                     />

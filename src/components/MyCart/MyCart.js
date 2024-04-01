@@ -8,9 +8,8 @@ import { addProductIncart } from "../../apis/cart";
 import { useNavigate } from "react-router";
 import { Footer } from "../Footer/Footer";
 import { TitleBar } from "../TitleBar/TitleBar";
-import image0 from "../../assets/products/image6.png";
 import backButton from "../../assets/icon/backButton.png";
-import { convenienceFee } from "../../utils/constants";
+import { CONVENIENCE_FEE } from "../../utils/constants";
 import MobileSearchBar from "../SearchBar/MobileSearchBar";
 import { formatNumberIndianStyle } from "../../utils/UtilFunctions/util";
 
@@ -75,7 +74,6 @@ export const MyCart = () => {
 
   const calculateTotalMrp = (cart) => {
     try {
-      console.log(cart);
       let mrp = 0;
       if (cart) {
         for (let i = 0; i < cart.length; i++) {
@@ -89,7 +87,6 @@ export const MyCart = () => {
   };
 
   const handlePlaceOrder = () => {
-    console.log("hi");
     navigate("/checkout");
   };
 
@@ -130,7 +127,7 @@ export const MyCart = () => {
                 <div>
                   <div className={styles.singleProduct}>
                     <div className={styles.itemImage}>
-                      <img src={image0} />
+                      <img src={item?.product.imageUrl} />
                     </div>
                     <div>
                       <span className={styles.itemName}>
@@ -191,7 +188,7 @@ export const MyCart = () => {
 
                 <tr>
                   <td>Convenience Fee</td>
-                  <td>₹{numberOfProductInCart > 0 ? convenienceFee : 0}</td>
+                  <td>₹{numberOfProductInCart > 0 ? CONVENIENCE_FEE : 0}</td>
                 </tr>
               </table>
             </div>
@@ -204,7 +201,7 @@ export const MyCart = () => {
                   <td>
                     ₹
                     {totalMrp +
-                      (numberOfProductInCart > 0 ? convenienceFee : 0)}
+                      (numberOfProductInCart > 0 ? CONVENIENCE_FEE : 0)}
                   </td>
                 </tr>
               </table>
@@ -238,7 +235,7 @@ export const MyCart = () => {
                 cart.map((item, index) => (
                   <div className={styles.mobileViewItem}>
                     <div className={styles.mobileViewItemImage}>
-                      <img src={image0} />
+                      <img src={item?.product.imageUrl} />
                     </div>
                     <div className={styles.mobileViewItemInfo}>
                       <p style={{ "font-size": "16px" }}>
@@ -271,7 +268,7 @@ export const MyCart = () => {
 
                   <tr>
                     <td>Convenience Fee</td>
-                    <td>₹{numberOfProductInCart > 0 ? convenienceFee : 0}</td>
+                    <td>₹{numberOfProductInCart > 0 ? CONVENIENCE_FEE : 0}</td>
                   </tr>
                   <br />
                 </table>
@@ -282,7 +279,7 @@ export const MyCart = () => {
               <strong>
                 ₹
                 {formatNumberIndianStyle(
-                  totalMrp + (numberOfProductInCart > 0 ? convenienceFee : 0)
+                  totalMrp + (numberOfProductInCart > 0 ? CONVENIENCE_FEE : 0)
                 )}
               </strong>
             </div>

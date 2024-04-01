@@ -6,10 +6,9 @@ export const registerUser = async ({ name, mobile, email, password }) => {
     const reqUrl = `${backendUrl}/auth/register`;
     const reqPayload = { name, mobile, email, password };
     const response = await axios.post(reqUrl, reqPayload);
-    return response.data;
+    return response;
   } catch (error) {
-    console.log(error);
-    //  toast with custom message for clients
+    return error.response;
   }
 };
 
@@ -18,9 +17,8 @@ export const loginUser = async ({ userIdentifier, password }) => {
     const reqUrl = `${backendUrl}/auth/login`;
     const reqPayload = { userIdentifier, password };
     const response = await axios.post(reqUrl, reqPayload);
-    console.log("user", response.data);
-    return response.data;
+    return response;
   } catch (error) {
-    console.log(error);
+    return error.response;
   }
 };

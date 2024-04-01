@@ -3,12 +3,6 @@ export const logout = () => {
   localStorage.removeItem("userName");
 };
 
-export const isUserLoggedIn = () => {
-  const token = localStorage.getItem("token");
-  if (token) return true;
-  return false;
-};
-
 export const formatNumberIndianStyle = (x) => {
   if (typeof x === "number") {
     x = x.toString();

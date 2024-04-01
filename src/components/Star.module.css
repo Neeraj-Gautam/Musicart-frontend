@@ -1,12 +1,12 @@
 .iconStyle {
-    display: flex;
-    gap: 0.2rem;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 15px;
 }
 
 .icon {
-    font-size: 2rem;
-    color: #FFD600;
+  font-size: 2rem;
+  color: #ffd600;
 }
-
